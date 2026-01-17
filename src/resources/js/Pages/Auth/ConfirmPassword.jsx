@@ -1,6 +1,7 @@
-import GuestLayout from '@/layouts/GuestLayout';
-import { Head, useForm } from '@inertiajs/react';
-import { Form, Button } from 'react-bootstrap';
+import AuthLayout from '@/layouts/AuthLayout';
+import { useForm } from '@inertiajs/react';
+import { Form, Button, Card } from 'react-bootstrap';
+import { auth } from '@/config/labels';
 
 export default function ConfirmPassword() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -15,38 +16,49 @@ export default function ConfirmPassword() {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Confirm Password" />
+        <AuthLayout title={auth.confirmPasswordTitle}>
+            <Card className="auth-card border-0 shadow-lg">
+                <Card.Body className="p-4 p-md-5">
+                    <h5 className="text-center mb-3 fw-bold text-dark">
+                        {auth.confirmPasswordTitle}
+                    </h5>
 
-            <h5 className="text-center mb-4">Confirm Password</h5>
+                    <p className="text-muted mb-4 text-center small">
+                        {auth.confirmPasswordDesc}
+                    </p>
 
-            <p className="text-muted mb-4">
-                This is a secure area. Please confirm your password before continuing.
-            </p>
+                    <Form onSubmit={submit}>
+                        <Form.Group className="mb-4">
+                            <Form.Control
+                                type="password"
+                                value={data.password}
+                                onChange={(e) => setData('password', e.target.value)}
+                                autoFocus
+                                isInvalid={!!errors.password}
+                                placeholder={auth.passwordPlaceholder}
+                                className="auth-input"
+                                size="lg"
+                            />
+                            {errors.password && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.password}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
 
-            <Form onSubmit={submit}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={data.password}
-                        onChange={(e) => setData('password', e.target.value)}
-                        autoFocus
-                        isInvalid={!!errors.password}
-                    />
-                    {errors.password && (
-                        <Form.Control.Feedback type="invalid">
-                            {errors.password}
-                        </Form.Control.Feedback>
-                    )}
-                </Form.Group>
-
-                <div className="d-grid">
-                    <Button type="submit" variant="primary" disabled={processing}>
-                        {processing ? 'Confirming...' : 'Confirm'}
-                    </Button>
-                </div>
-            </Form>
-        </GuestLayout>
+                        <div className="d-grid">
+                            <Button
+                                type="submit"
+                                className="auth-btn"
+                                size="lg"
+                                disabled={processing}
+                            >
+                                {processing ? auth.confirming : auth.confirmButton}
+                            </Button>
+                        </div>
+                    </Form>
+                </Card.Body>
+            </Card>
+        </AuthLayout>
     );
 }

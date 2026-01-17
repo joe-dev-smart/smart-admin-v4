@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Image } from 'react-bootstrap';
 
-
-
+// Flag images from public folder
+const flagsPath = '/images/flags';
 
 
 
@@ -10,32 +10,32 @@ const availableLanguages = [{
   code: 'en',
   name: 'English',
   nativeName: 'English',
-  flag: flagUS
+  flag: `${flagsPath}/us.svg`
 }, {
   code: 'de',
   name: 'German',
   nativeName: 'Deutsch',
-  flag: flagDE
+  flag: `${flagsPath}/de.svg`
 }, {
   code: 'it',
   name: 'Italian',
   nativeName: 'Italiano',
-  flag: flagIT
+  flag: `${flagsPath}/it.svg`
 }, {
   code: 'es',
   name: 'Spanish',
   nativeName: 'Español',
-  flag: flagES
+  flag: `${flagsPath}/es.svg`
 }, {
   code: 'ru',
   name: 'Russian',
   nativeName: 'Русский',
-  flag: flagRU
+  flag: `${flagsPath}/ru.svg`
 }, {
   code: 'hi',
   name: 'Hindi',
   nativeName: 'हिन्दी',
-  flag: flagIN
+  flag: `${flagsPath}/in.svg`
 }];
 const LanguageDropdown = () => {
   const [language, setLanguage] = useState(availableLanguages[0]);

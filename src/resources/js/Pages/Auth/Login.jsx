@@ -1,6 +1,7 @@
-import GuestLayout from '@/layouts/GuestLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import AuthLayout from '@/layouts/AuthLayout';
+import { Link, useForm } from '@inertiajs/react';
+import { Form, Button, Alert, Card } from 'react-bootstrap';
+import { auth } from '@/config/labels';
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -17,91 +18,97 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Log in" />
-
-            <h5 className="text-center mb-4">Sign In</h5>
-
-            {status && (
-                <Alert variant="success" className="mb-3">
-                    {status}
-                </Alert>
-            )}
-
-            <Form onSubmit={submit}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Email Address</Form.Label>
-                    <Form.Control
-                        type="email"
-                        value={data.email}
-                        onChange={(e) => setData('email', e.target.value)}
-                        autoComplete="username"
-                        autoFocus
-                        isInvalid={!!errors.email}
-                        placeholder="Enter your email"
-                    />
-                    {errors.email && (
-                        <Form.Control.Feedback type="invalid">
-                            {errors.email}
-                        </Form.Control.Feedback>
+        <AuthLayout title={auth.login}>
+            <Card className="auth-card border-0 shadow-lg">
+                <Card.Body className="p-4 p-md-5">
+                    {status && (
+                        <Alert variant="success" className="mb-4">
+                            {status}
+                        </Alert>
                     )}
-                </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={data.password}
-                        onChange={(e) => setData('password', e.target.value)}
-                        autoComplete="current-password"
-                        isInvalid={!!errors.password}
-                        placeholder="Enter your password"
-                    />
-                    {errors.password && (
-                        <Form.Control.Feedback type="invalid">
-                            {errors.password}
-                        </Form.Control.Feedback>
-                    )}
-                </Form.Group>
+                    <Form onSubmit={submit}>
+                        <Form.Group className="mb-4">
+                            <Form.Control
+                                type="email"
+                                value={data.email}
+                                onChange={(e) => setData('email', e.target.value)}
+                                autoComplete="username"
+                                autoFocus
+                                isInvalid={!!errors.email}
+                                placeholder={auth.emailPlaceholder}
+                                className="auth-input"
+                                size="lg"
+                            />
+                            {errors.email && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.email}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
 
-                <div className="d-flex justify-content-between align-items-center mb-3">
-                    <Form.Check
-                        type="checkbox"
-                        id="remember"
-                        label="Remember me"
-                        checked={data.remember}
-                        onChange={(e) => setData('remember', e.target.checked)}
-                    />
+                        <Form.Group className="mb-4">
+                            <Form.Control
+                                type="password"
+                                value={data.password}
+                                onChange={(e) => setData('password', e.target.value)}
+                                autoComplete="current-password"
+                                isInvalid={!!errors.password}
+                                placeholder={auth.passwordPlaceholder}
+                                className="auth-input"
+                                size="lg"
+                            />
+                            {errors.password && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.password}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
 
-                    {canResetPassword && (
-                        <Link
-                            href={route('password.request')}
-                            className="text-muted small"
-                        >
-                            Forgot password?
-                        </Link>
-                    )}
-                </div>
+                        <Form.Group className="mb-4">
+                            <Form.Check
+                                type="checkbox"
+                                id="remember"
+                                label={auth.rememberMe}
+                                checked={data.remember}
+                                onChange={(e) => setData('remember', e.target.checked)}
+                                className="auth-checkbox"
+                            />
+                        </Form.Group>
 
-                <div className="d-grid">
-                    <Button
-                        type="submit"
-                        variant="primary"
-                        disabled={processing}
-                    >
-                        {processing ? 'Signing in...' : 'Sign In'}
-                    </Button>
-                </div>
-            </Form>
+                        <div className="d-grid">
+                            <Button
+                                type="submit"
+                                className="auth-btn"
+                                size="lg"
+                                disabled={processing}
+                            >
+                                {processing ? auth.loggingIn : auth.loginButton}
+                            </Button>
+                        </div>
 
-            <div className="text-center mt-4">
+                        {canResetPassword && (
+                            <div className="text-center mt-4">
+                                <Link
+                                    href={route('password.request')}
+                                    className="text-muted small text-decoration-none"
+                                >
+                                    {auth.forgotPassword}
+                                </Link>
+                            </div>
+                        )}
+                    </Form>
+                </Card.Body>
+            </Card>
+
+            <div className="text-center mt-4 d-lg-none">
                 <p className="text-muted mb-0">
-                    Don't have an account?{' '}
-                    <Link href={route('register')} className="text-primary">
-                        Register
+                    {auth.noAccount}{' '}
+                    <Link href={route('register')} className="text-primary fw-semibold">
+                        {auth.register}
                     </Link>
                 </p>
             </div>
-        </GuestLayout>
+        </AuthLayout>
     );
 }

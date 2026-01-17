@@ -1,0 +1,311 @@
+/**
+ * Auth Pages Styles
+ * Custom styling for Login, Register, and other authentication pages
+ * Matches the Smart Ideas brand design
+ */
+
+// Auth Layout Colors (based on brand colors)
+$auth-bg-dark: #263544;
+$auth-bg-darker: #1e2a38;
+$auth-primary: #00b8b8;
+$auth-primary-dark: #009999;
+$auth-primary-light: #00d4d4;
+
+// Auth Layout
+.auth-layout {
+    min-height: 100vh;
+    background: $auth-bg-dark;
+    position: relative;
+}
+
+// Left Panel - Branding
+.auth-branding {
+    background: linear-gradient(135deg, $auth-bg-darker 0%, $auth-bg-dark 100%);
+    position: relative;
+
+    &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('/images/bg-pattern.png') repeat;
+        opacity: 0.03;
+        pointer-events: none;
+    }
+}
+
+.auth-branding-content {
+    position: relative;
+    z-index: 1;
+    max-width: 500px;
+}
+
+.auth-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.3;
+
+    @media (min-width: 1200px) {
+        font-size: 2.25rem;
+    }
+}
+
+.auth-tagline {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.auth-description {
+    font-size: 0.95rem;
+    color: rgba(255, 255, 255, 0.75);
+    line-height: 1.6;
+    text-align: justify;
+}
+
+.auth-logo {
+    img {
+        max-width: 280px;
+        height: auto;
+        filter: drop-shadow(0 4px 6px rgba(0, 0, 0, 0.3));
+    }
+}
+
+.auth-contact {
+    font-size: 0.9rem;
+    color: rgba(255, 255, 255, 0.85);
+
+    .text-primary {
+        color: $auth-primary !important;
+    }
+
+    a:hover {
+        color: $auth-primary-light !important;
+    }
+}
+
+// Right Panel - Form
+.auth-form-panel {
+    background: #fff;
+    min-height: 100vh;
+
+    @media (max-width: 991.98px) {
+        background: $auth-bg-dark;
+        min-height: auto;
+    }
+}
+
+.auth-form-container {
+    @media (max-width: 991.98px) {
+        padding: 1rem;
+    }
+}
+
+// Auth Card
+.auth-card {
+    border-radius: 12px;
+    overflow: hidden;
+
+    @media (max-width: 991.98px) {
+        background: #fff;
+    }
+}
+
+// Auth Input Fields
+.auth-input {
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 0.875rem 1rem;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+
+    &:focus {
+        border-color: $auth-primary;
+        box-shadow: 0 0 0 3px rgba($auth-primary, 0.15);
+    }
+
+    &::placeholder {
+        color: #9e9e9e;
+    }
+
+    &.is-invalid {
+        border-color: #dc3545;
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba(#dc3545, 0.15);
+        }
+
+        // Ensure error message is visible
+        & + .invalid-feedback {
+            display: block;
+        }
+    }
+}
+
+// Validation feedback (ensure visibility)
+.auth-card {
+    .invalid-feedback {
+        display: block;
+        font-size: 0.875rem;
+        color: #dc3545;
+        margin-top: 0.25rem;
+    }
+}
+
+// Auth Checkbox
+.auth-checkbox {
+    .form-check-input {
+        width: 1.15em;
+        height: 1.15em;
+        margin-top: 0.2em;
+        border-radius: 4px;
+        border: 1.5px solid #ccc;
+
+        &:checked {
+            background-color: $auth-primary;
+            border-color: $auth-primary;
+        }
+
+        &:focus {
+            box-shadow: 0 0 0 3px rgba($auth-primary, 0.15);
+        }
+    }
+
+    .form-check-label {
+        color: #666;
+        font-size: 0.95rem;
+    }
+}
+
+// Auth Button
+.auth-btn {
+    background: linear-gradient(135deg, $auth-primary 0%, $auth-primary-dark 100%);
+    border: none;
+    border-radius: 8px;
+    padding: 0.875rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+
+    &:hover,
+    &:focus {
+        background: linear-gradient(135deg, $auth-primary-light 0%, $auth-primary 100%);
+        box-shadow: 0 4px 15px rgba($auth-primary, 0.4);
+        transform: translateY(-1px);
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    &:disabled {
+        background: linear-gradient(135deg, lighten($auth-primary, 15%) 0%, lighten($auth-primary-dark, 15%) 100%);
+        opacity: 0.7;
+        transform: none;
+        box-shadow: none;
+    }
+}
+
+// Auth Footer
+.auth-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    text-align: center;
+    padding: 1rem;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.8);
+    background: rgba($auth-bg-darker, 0.95);
+    backdrop-filter: blur(10px);
+    z-index: 100;
+
+    .text-warning {
+        color: #f0ad4e !important;
+    }
+
+    .text-danger {
+        color: #dc3545 !important;
+    }
+
+    .text-primary {
+        color: $auth-primary !important;
+    }
+}
+
+// Auth Link Text (for mobile)
+.auth-link-text {
+    color: #666;
+
+    @media (max-width: 991.98px) {
+        color: rgba(255, 255, 255, 0.8);
+    }
+
+    a {
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+// Responsive adjustments
+@media (max-width: 991.98px) {
+    .auth-layout {
+        padding-bottom: 60px; // Space for fixed footer
+    }
+
+    .auth-form-panel {
+        padding-top: 2rem !important;
+        padding-bottom: 2rem !important;
+    }
+}
+
+// Animation for card
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.auth-card {
+    animation: fadeInUp 0.4s ease-out;
+}
+
+// Dark mode support (optional)
+[data-bs-theme="dark"] {
+    .auth-form-panel {
+        background: $auth-bg-dark;
+    }
+
+    .auth-card {
+        background: $auth-bg-darker;
+        color: #fff;
+
+        .text-dark {
+            color: #fff !important;
+        }
+    }
+
+    .auth-input {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: #fff;
+
+        &::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+    }
+}

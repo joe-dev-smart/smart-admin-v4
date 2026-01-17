@@ -3,8 +3,8 @@ import { Button, Col, Dropdown, DropdownItem, DropdownMenu, DropdownToggle, Imag
 import { LuMails, LuShieldCheck } from 'react-icons/lu';
 import { TbXboxXFilled } from 'react-icons/tb';
 
-
-
+// User avatars from public folder
+const usersPath = '/images/users';
 
 
 import { Link } from '@inertiajs/react';
@@ -12,7 +12,7 @@ const messages = [{
   id: 'message-1',
   user: {
     name: 'Liam Carter',
-    avatar: user1
+    avatar: `${usersPath}/user-1.jpg`
   },
   action: 'uploaded a new document to',
   context: 'Project Phoenix',
@@ -22,7 +22,7 @@ const messages = [{
   id: 'message-2',
   user: {
     name: 'Ava Mitchell',
-    avatar: user2
+    avatar: `${usersPath}/user-2.jpg`
   },
   action: 'commented on',
   context: 'Marketing Campaign Q3',
@@ -41,7 +41,7 @@ const messages = [{
   id: 'message-4',
   user: {
     name: 'Sophia Taylor',
-    avatar: user4
+    avatar: `${usersPath}/user-4.jpg`
   },
   action: 'sent an invoice for',
   context: 'Service Renewal',
@@ -50,7 +50,7 @@ const messages = [{
   id: 'message-5',
   user: {
     name: 'Ethan Moore',
-    avatar: user5
+    avatar: `${usersPath}/user-5.jpg`
   },
   action: 'completed the task',
   context: 'UI Review',
@@ -59,7 +59,7 @@ const messages = [{
   id: 'message-6',
   user: {
     name: 'Olivia White',
-    avatar: user6
+    avatar: `${usersPath}/user-6.jpg`
   },
   action: 'assigned you a task in',
   context: 'Sales Pipeline',

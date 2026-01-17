@@ -12,6 +12,10 @@ import { Button, Container, FormControl } from 'react-bootstrap';
 import { LuSearch } from 'react-icons/lu';
 import { TbMenu4 } from 'react-icons/tb';
 
+// Logo images from public folder
+const logo = '/images/logo.png';
+const logoDark = '/images/logo-black.png';
+const logoSm = '/images/logo-sm.png';
 
 
 const Topbar = () => {

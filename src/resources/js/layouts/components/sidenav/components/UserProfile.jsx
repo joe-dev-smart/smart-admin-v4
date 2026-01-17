@@ -5,12 +5,16 @@ import { Dropdown, DropdownDivider, DropdownItem, DropdownMenu, DropdownToggle }
 import { TbSettings } from 'react-icons/tb';
 
 import { Image } from 'react-bootstrap';
+
+// User avatars from public folder
+const usersPath = '/images/users';
+
 const UserProfile = () => {
   return <div className="sidenav-user">
       <div className="d-flex justify-content-between align-items-center">
         <div>
           <Link href="/" className="link-reset">
-            <Image src={user2} alt="user-image" width="36" height="36" className="rounded-circle mb-2 avatar-md" />
+            <Image src={`${usersPath}/user-2.jpg`} alt="user-image" width="36" height="36" className="rounded-circle mb-2 avatar-md" />
             <span className="sidenav-user-name fw-bold">Damian D.</span>
             <span className="fs-12 fw-semibold" data-lang="user-role">
               Art Director

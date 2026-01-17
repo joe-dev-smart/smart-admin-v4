@@ -5,11 +5,14 @@ import { Fragment } from 'react';
 import { Dropdown, DropdownDivider, DropdownItem, DropdownMenu, DropdownToggle } from 'react-bootstrap';
 import { TbChevronDown } from 'react-icons/tb';
 
+// User avatars from public folder
+const usersPath = '/images/users';
+
 const UserProfile = () => {
   return <div className="topbar-item nav-user">
       <Dropdown align="end">
         <DropdownToggle as={'a'} className="topbar-link dropdown-toggle drop-arrow-none px-2">
-          <Image src={user2} width="32" height="32" className="rounded-circle me-lg-2 d-flex" alt="user-image" />
+          <Image src={`${usersPath}/user-2.jpg`} width="32" height="32" className="rounded-circle me-lg-2 d-flex" alt="user-image" />
           <div className="d-lg-flex align-items-center gap-1 d-none">
             <h5 className="my-0">Damian D.</h5>
             <TbChevronDown className="align-middle" />

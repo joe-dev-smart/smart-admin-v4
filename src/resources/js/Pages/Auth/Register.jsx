@@ -1,6 +1,7 @@
-import GuestLayout from '@/layouts/GuestLayout';
-import { Head, Link, useForm } from '@inertiajs/react';
-import { Form, Button } from 'react-bootstrap';
+import AuthLayout from '@/layouts/AuthLayout';
+import { Link, useForm } from '@inertiajs/react';
+import { Form, Button, Card } from 'react-bootstrap';
+import { auth } from '@/config/labels';
 
 export default function Register() {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -18,100 +19,109 @@ export default function Register() {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Register" />
+        <AuthLayout title={auth.createAccount}>
+            <Card className="auth-card border-0 shadow-lg">
+                <Card.Body className="p-4 p-md-5">
+                    <h5 className="text-center mb-4 fw-bold text-dark">
+                        {auth.createAccount}
+                    </h5>
 
-            <h5 className="text-center mb-4">Create Account</h5>
+                    <Form onSubmit={submit}>
+                        <Form.Group className="mb-3">
+                            <Form.Control
+                                type="text"
+                                value={data.name}
+                                onChange={(e) => setData('name', e.target.value)}
+                                autoComplete="name"
+                                autoFocus
+                                isInvalid={!!errors.name}
+                                placeholder={auth.namePlaceholder}
+                                className="auth-input"
+                                size="lg"
+                            />
+                            {errors.name && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.name}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
 
-            <Form onSubmit={submit}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={data.name}
-                        onChange={(e) => setData('name', e.target.value)}
-                        autoComplete="name"
-                        autoFocus
-                        isInvalid={!!errors.name}
-                        placeholder="Enter your name"
-                    />
-                    {errors.name && (
-                        <Form.Control.Feedback type="invalid">
-                            {errors.name}
-                        </Form.Control.Feedback>
-                    )}
-                </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Control
+                                type="email"
+                                value={data.email}
+                                onChange={(e) => setData('email', e.target.value)}
+                                autoComplete="username"
+                                isInvalid={!!errors.email}
+                                placeholder={auth.email}
+                                className="auth-input"
+                                size="lg"
+                            />
+                            {errors.email && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.email}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Email Address</Form.Label>
-                    <Form.Control
-                        type="email"
-                        value={data.email}
-                        onChange={(e) => setData('email', e.target.value)}
-                        autoComplete="username"
-                        isInvalid={!!errors.email}
-                        placeholder="Enter your email"
-                    />
-                    {errors.email && (
-                        <Form.Control.Feedback type="invalid">
-                            {errors.email}
-                        </Form.Control.Feedback>
-                    )}
-                </Form.Group>
+                        <Form.Group className="mb-3">
+                            <Form.Control
+                                type="password"
+                                value={data.password}
+                                onChange={(e) => setData('password', e.target.value)}
+                                autoComplete="new-password"
+                                isInvalid={!!errors.password}
+                                placeholder={auth.passwordPlaceholder}
+                                className="auth-input"
+                                size="lg"
+                            />
+                            {errors.password && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.password}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={data.password}
-                        onChange={(e) => setData('password', e.target.value)}
-                        autoComplete="new-password"
-                        isInvalid={!!errors.password}
-                        placeholder="Create a password"
-                    />
-                    {errors.password && (
-                        <Form.Control.Feedback type="invalid">
-                            {errors.password}
-                        </Form.Control.Feedback>
-                    )}
-                </Form.Group>
+                        <Form.Group className="mb-4">
+                            <Form.Control
+                                type="password"
+                                value={data.password_confirmation}
+                                onChange={(e) => setData('password_confirmation', e.target.value)}
+                                autoComplete="new-password"
+                                isInvalid={!!errors.password_confirmation}
+                                placeholder={auth.confirmPasswordPlaceholder}
+                                className="auth-input"
+                                size="lg"
+                            />
+                            {errors.password_confirmation && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.password_confirmation}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Confirm Password</Form.Label>
-                    <Form.Control
-                        type="password"
-                        value={data.password_confirmation}
-                        onChange={(e) => setData('password_confirmation', e.target.value)}
-                        autoComplete="new-password"
-                        isInvalid={!!errors.password_confirmation}
-                        placeholder="Confirm your password"
-                    />
-                    {errors.password_confirmation && (
-                        <Form.Control.Feedback type="invalid">
-                            {errors.password_confirmation}
-                        </Form.Control.Feedback>
-                    )}
-                </Form.Group>
-
-                <div className="d-grid">
-                    <Button
-                        type="submit"
-                        variant="primary"
-                        disabled={processing}
-                    >
-                        {processing ? 'Creating account...' : 'Register'}
-                    </Button>
-                </div>
-            </Form>
+                        <div className="d-grid">
+                            <Button
+                                type="submit"
+                                className="auth-btn"
+                                size="lg"
+                                disabled={processing}
+                            >
+                                {processing ? auth.registering : auth.registerButton}
+                            </Button>
+                        </div>
+                    </Form>
+                </Card.Body>
+            </Card>
 
             <div className="text-center mt-4">
-                <p className="text-muted mb-0">
-                    Already have an account?{' '}
-                    <Link href={route('login')} className="text-primary">
-                        Sign In
+                <p className="auth-link-text mb-0">
+                    {auth.hasAccount}{' '}
+                    <Link href={route('login')} className="text-primary fw-semibold">
+                        {auth.login}
                     </Link>
                 </p>
             </div>
-        </GuestLayout>
+        </AuthLayout>
     );
 }

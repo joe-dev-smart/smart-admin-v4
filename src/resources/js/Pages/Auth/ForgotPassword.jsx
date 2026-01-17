@@ -1,6 +1,7 @@
-import GuestLayout from '@/layouts/GuestLayout';
-import { Head, useForm } from '@inertiajs/react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import AuthLayout from '@/layouts/AuthLayout';
+import { Link, useForm } from '@inertiajs/react';
+import { Form, Button, Alert, Card } from 'react-bootstrap';
+import { auth } from '@/config/labels';
 
 export default function ForgotPassword({ status }) {
     const { data, setData, post, processing, errors } = useForm({
@@ -13,45 +14,64 @@ export default function ForgotPassword({ status }) {
     };
 
     return (
-        <GuestLayout>
-            <Head title="Forgot Password" />
+        <AuthLayout title={auth.resetPassword}>
+            <Card className="auth-card border-0 shadow-lg">
+                <Card.Body className="p-4 p-md-5">
+                    <h5 className="text-center mb-3 fw-bold text-dark">
+                        {auth.resetPassword}
+                    </h5>
 
-            <h5 className="text-center mb-4">Forgot Password</h5>
+                    <p className="text-muted mb-4 text-center small">
+                        {auth.forgotPasswordDesc}
+                    </p>
 
-            <p className="text-muted mb-4 text-center">
-                Enter your email address and we will send you a password reset link.
-            </p>
-
-            {status && (
-                <Alert variant="success" className="mb-3">
-                    {status}
-                </Alert>
-            )}
-
-            <Form onSubmit={submit}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Email Address</Form.Label>
-                    <Form.Control
-                        type="email"
-                        value={data.email}
-                        onChange={(e) => setData('email', e.target.value)}
-                        autoFocus
-                        isInvalid={!!errors.email}
-                        placeholder="Enter your email"
-                    />
-                    {errors.email && (
-                        <Form.Control.Feedback type="invalid">
-                            {errors.email}
-                        </Form.Control.Feedback>
+                    {status && (
+                        <Alert variant="success" className="mb-4">
+                            {status}
+                        </Alert>
                     )}
-                </Form.Group>
 
-                <div className="d-grid">
-                    <Button type="submit" variant="primary" disabled={processing}>
-                        {processing ? 'Sending...' : 'Send Reset Link'}
-                    </Button>
-                </div>
-            </Form>
-        </GuestLayout>
+                    <Form onSubmit={submit}>
+                        <Form.Group className="mb-4">
+                            <Form.Control
+                                type="email"
+                                value={data.email}
+                                onChange={(e) => setData('email', e.target.value)}
+                                autoFocus
+                                isInvalid={!!errors.email}
+                                placeholder={auth.email}
+                                className="auth-input"
+                                size="lg"
+                            />
+                            {errors.email && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.email}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
+
+                        <div className="d-grid">
+                            <Button
+                                type="submit"
+                                className="auth-btn"
+                                size="lg"
+                                disabled={processing}
+                            >
+                                {processing ? auth.sendingResetLink : auth.sendResetLink}
+                            </Button>
+                        </div>
+                    </Form>
+
+                    <div className="text-center mt-4">
+                        <Link
+                            href={route('login')}
+                            className="text-muted small text-decoration-none"
+                        >
+                            ← {auth.login}
+                        </Link>
+                    </div>
+                </Card.Body>
+            </Card>
+        </AuthLayout>
     );
 }

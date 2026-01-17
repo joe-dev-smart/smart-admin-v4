@@ -1,22 +1,22 @@
-import * as echarts from 'echarts/core';
-import { lazy, useMemo } from 'react';
-import { useLayoutContext } from '@/context/useLayoutContext';
-const ReactECharts = lazy(() => import('echarts-for-react'));
-let extensionsRegistered = false;
-const CustomEChart = ({
-  getOptions,
-  extensions,
-  ...props
-}) => {
-  if (!extensionsRegistered) {
-    echarts.use(extensions);
-    extensionsRegistered = true;
-  }
-  const {
-    skin,
-    theme
-  } = useLayoutContext();
-  const options = useMemo(() => getOptions(), [getOptions, skin, theme]);
-  return <ReactECharts echarts={echarts} {...props} option={options} />;
+/**
+ * CustomEChart Component
+ *
+ * This component requires echarts and echarts-for-react packages to be installed.
+ * To use this component, run:
+ *   npm install echarts echarts-for-react
+ *
+ * Currently disabled to prevent build errors when dependencies are not installed.
+ */
+
+const CustomEChart = ({ getOptions, extensions = [], ...props }) => {
+  return (
+    <div
+      className="d-flex justify-content-center align-items-center text-muted"
+      style={{ minHeight: '200px', border: '1px dashed #ccc', borderRadius: '4px' }}
+    >
+      <span>ECharts not configured. Install echarts packages to enable.</span>
+    </div>
+  );
 };
+
 export default CustomEChart;
