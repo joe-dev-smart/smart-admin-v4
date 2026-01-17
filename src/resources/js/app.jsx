@@ -1,11 +1,13 @@
-import '../css/app.css';
+import '../scss/app.scss';
 import './bootstrap';
 
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot } from 'react-dom/client';
+import { LayoutProvider } from '@/context/useLayoutContext';
+import { NotificationProvider } from '@/context/useNotificationContext';
 
-const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
+const appName = import.meta.env.VITE_APP_NAME || 'Smart Admin';
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -17,9 +19,15 @@ createInertiaApp({
     setup({ el, App, props }) {
         const root = createRoot(el);
 
-        root.render(<App {...props} />);
+        root.render(
+            <LayoutProvider>
+                <NotificationProvider>
+                    <App {...props} />
+                </NotificationProvider>
+            </LayoutProvider>
+        );
     },
     progress: {
-        color: '#4B5563',
+        color: '#465dff',
     },
 });

@@ -6,20 +6,26 @@
         "build": "vite build",
         "dev": "vite"
     },
-    "devDependencies": {
-        "@headlessui/react": "^2.0.0",
+    "dependencies": {
         "@inertiajs/react": "^2.0.0",
-        "@tailwindcss/forms": "^0.5.3",
-        "@tailwindcss/vite": "^4.0.0",
+        "@popperjs/core": "^2.11.8",
+        "@tabler/icons-react": "^3.19.0",
+        "axios": "^1.11.0",
+        "bootstrap": "^5.3.8",
+        "clsx": "^2.1.1",
+        "react": "^18.2.0",
+        "react-bootstrap": "^2.10.10",
+        "react-dom": "^18.2.0",
+        "simplebar-react": "^3.3.0",
+        "usehooks-ts": "^3.1.1",
+        "react-icons": "^5.5.0"
+    },
+    "devDependencies": {
         "@vitejs/plugin-react": "^4.2.0",
         "autoprefixer": "^10.4.12",
-        "axios": "^1.11.0",
-        "concurrently": "^9.0.1",
         "laravel-vite-plugin": "^2.0.0",
         "postcss": "^8.4.31",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "tailwindcss": "^3.2.1",
+        "sass": "^1.77.6",
         "vite": "^7.0.7"
     }
 }
