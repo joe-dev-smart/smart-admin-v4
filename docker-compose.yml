@@ -1,0 +1,128 @@
+services:
+  # PHP-FPM Application
+  app:
+    build:
+      context: ./docker/php
+      args:
+        UID: ${UID:-1000}
+        GID: ${GID:-1000}
+    container_name: smart-admin-app
+    restart: unless-stopped
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www
+    networks:
+      - smart-admin
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  # Nginx Web Server
+  nginx:
+    image: nginx:alpine
+    container_name: smart-admin-nginx
+    restart: unless-stopped
+    ports:
+      - "${APP_PORT:-80}:80"
+    volumes:
+      - ./src:/var/www
+      - ./docker/nginx/conf.d:/etc/nginx/conf.d
+    networks:
+      - smart-admin
+    depends_on:
+      - app
+
+  # MySQL Database
+  mysql:
+    image: mysql:8.0
+    container_name: smart-admin-mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE:-smart_admin}
+      MYSQL_USER: ${DB_USERNAME:-smart_admin}
+      MYSQL_PASSWORD: ${DB_PASSWORD:-secret}
+      MYSQL_ROOT_PASSWORD: ${DB_PASSWORD:-secret}
+    ports:
+      - "${DB_PORT:-3306}:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    networks:
+      - smart-admin
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-p${DB_PASSWORD:-secret}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Redis Cache
+  redis:
+    image: redis:alpine
+    container_name: smart-admin-redis
+    restart: unless-stopped
+    ports:
+      - "${REDIS_PORT:-6379}:6379"
+    volumes:
+      - redis-data:/data
+    networks:
+      - smart-admin
+    command: redis-server --appendonly yes
+
+  # Node.js for Vite Dev Server (development only)
+  node:
+    image: node:20-alpine
+    container_name: smart-admin-node
+    working_dir: /var/www
+    volumes:
+      - ./src:/var/www
+    ports:
+      - "${VITE_PORT:-5173}:5173"
+    networks:
+      - smart-admin
+    command: sh -c "npm install && npm run dev -- --host 0.0.0.0"
+    profiles:
+      - dev
+
+  # phpMyAdmin - Database Management
+  phpmyadmin:
+    image: phpmyadmin:latest
+    container_name: smart-admin-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_PORT: 3306
+      UPLOAD_LIMIT: 64M
+    ports:
+      - "${PHPMYADMIN_PORT:-8080}:80"
+    networks:
+      - smart-admin
+    depends_on:
+      - mysql
+    profiles:
+      - tools
+
+  # Redis Commander - Redis Management
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: smart-admin-redis-commander
+    restart: unless-stopped
+    environment:
+      REDIS_HOSTS: local:redis:6379
+    ports:
+      - "${REDIS_COMMANDER_PORT:-8081}:8081"
+    networks:
+      - smart-admin
+    depends_on:
+      - redis
+    profiles:
+      - tools
+
+networks:
+  smart-admin:
+    driver: bridge
+
+volumes:
+  mysql-data:
+  redis-data:
