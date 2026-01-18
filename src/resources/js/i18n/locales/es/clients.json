@@ -1,0 +1,46 @@
+{
+    "title": "Clientes",
+    "subtitle": "Gestión de clientes",
+    "index": {
+        "title": "Lista de Clientes",
+        "subtitle": "Administra los clientes del sistema",
+        "addNew": "Nuevo Cliente",
+        "noResults": "No se encontraron clientes",
+        "noResultsDescription": "No hay clientes que coincidan con tu búsqueda."
+    },
+    "create": {
+        "title": "Crear Cliente",
+        "subtitle": "Registra un nuevo cliente en el sistema"
+    },
+    "edit": {
+        "title": "Editar Cliente",
+        "subtitle": "Modifica la información del cliente"
+    },
+    "fields": {
+        "name": "Nombre / Razón Social",
+        "namePlaceholder": "Ingresa el nombre o razón social",
+        "nit": "NIT / CI",
+        "nitPlaceholder": "Ingresa el NIT o CI",
+        "email": "Correo Electrónico",
+        "emailPlaceholder": "cliente@ejemplo.com",
+        "phone": "Teléfono",
+        "phonePlaceholder": "Ingresa el teléfono",
+        "address": "Dirección",
+        "addressPlaceholder": "Ingresa la dirección",
+        "observation": "Observaciones",
+        "observationPlaceholder": "Ingresa observaciones adicionales",
+        "status": "Estado"
+    },
+    "messages": {
+        "created": "Cliente creado exitosamente",
+        "updated": "Cliente actualizado exitosamente",
+        "deleted": "Cliente eliminado exitosamente",
+        "deleteConfirm": "¿Estás seguro de eliminar este cliente?",
+        "deleteWarning": "Esta acción no se puede deshacer."
+    },
+    "filters": {
+        "all": "Todos",
+        "enabled": "Activos",
+        "disabled": "Inactivos"
+    }
+}

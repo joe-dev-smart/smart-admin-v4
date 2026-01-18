@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Foundation\Application;
@@ -26,6 +27,9 @@ Route::middleware('auth')->group(function () {
 
     // Stores (Ubicaciones)
     Route::resource('stores', StoreController::class);
+
+    // Clients (Clientes)
+    Route::resource('clients', ClientController::class);
 });
 
 require __DIR__.'/auth.php';

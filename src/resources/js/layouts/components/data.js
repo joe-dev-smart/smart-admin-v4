@@ -76,7 +76,6 @@ export const menuItems = [
         label: 'nav.clients',
         icon: IconUsers,
         url: '/clients',
-        disabled: true, // Coming soon
     },
     {
         key: 'providers',
