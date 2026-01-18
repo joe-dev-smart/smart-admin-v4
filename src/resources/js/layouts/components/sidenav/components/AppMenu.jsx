@@ -5,6 +5,14 @@ import { Link, usePage } from '@inertiajs/react';
 import { useEffect, useState } from 'react';
 import { Collapse } from 'react-bootstrap';
 import { IconChevronDown } from '@tabler/icons-react';
+import { useTranslation } from 'react-i18next';
+
+// Helper to get translated label
+const useMenuLabel = (label) => {
+    const { t } = useTranslation();
+    // If label starts with 'nav.', translate it, otherwise return as-is
+    return label.startsWith('nav.') ? t(label) : label;
+};
 
 const MenuItemWithChildren = ({
     item,
@@ -13,6 +21,7 @@ const MenuItemWithChildren = ({
     level = 0,
 }) => {
     const { url: pathname } = usePage();
+    const menuLabel = useMenuLabel(item.label);
     const isTopLevel = level === 0;
     const [localOpen, setLocalOpen] = useState(false);
     const [didAutoOpen, setDidAutoOpen] = useState(false);
@@ -57,7 +66,7 @@ const MenuItemWithChildren = ({
                         <item.icon />
                     </span>
                 )}
-                <span className="menu-text">{item.label}</span>
+                <span className="menu-text">{menuLabel}</span>
                 {item.badge ? (
                     <span className={`badge bg-${item.badge.variant}`}>
                         {item.badge.text}
@@ -93,8 +102,9 @@ const MenuItemWithChildren = ({
 
 const MenuItem = ({ item }) => {
     const { url: pathname } = usePage();
-    const isActive = item.url && pathname.endsWith(item.url);
+    const isActive = item.url && pathname.startsWith(item.url);
     const { sidenav, hideBackdrop } = useLayoutContext();
+    const menuLabel = useMenuLabel(item.label);
 
     const toggleBackdrop = () => {
         if (sidenav.size === 'offcanvas') {
@@ -104,27 +114,41 @@ const MenuItem = ({ item }) => {
 
     return (
         <li className={`side-nav-item ${isActive ? 'active' : ''}`}>
-            <Link
-                href={item.url ?? '/'}
-                onClick={toggleBackdrop}
-                className={`side-nav-link ${isActive ? 'active' : ''} ${
-                    item.isDisabled ? 'disabled' : ''
-                } ${item.isSpecial ? 'special-menu' : ''}`}
-            >
-                {item.icon && (
-                    <span className="menu-icon">
-                        <item.icon />
-                    </span>
-                )}
-                <span className="menu-text">{item.label}</span>
-                {item.badge && (
-                    <span
-                        className={`badge text-bg-${item.badge.variant} opacity-50`}
-                    >
-                        {item.badge.text}
-                    </span>
-                )}
-            </Link>
+            {item.disabled ? (
+                <span
+                    className={`side-nav-link disabled text-muted`}
+                    style={{ cursor: 'not-allowed', opacity: 0.5 }}
+                >
+                    {item.icon && (
+                        <span className="menu-icon">
+                            <item.icon />
+                        </span>
+                    )}
+                    <span className="menu-text">{menuLabel}</span>
+                </span>
+            ) : (
+                <Link
+                    href={item.url ?? '/'}
+                    onClick={toggleBackdrop}
+                    className={`side-nav-link ${isActive ? 'active' : ''} ${
+                        item.isDisabled ? 'disabled' : ''
+                    } ${item.isSpecial ? 'special-menu' : ''}`}
+                >
+                    {item.icon && (
+                        <span className="menu-icon">
+                            <item.icon />
+                        </span>
+                    )}
+                    <span className="menu-text">{menuLabel}</span>
+                    {item.badge && (
+                        <span
+                            className={`badge text-bg-${item.badge.variant} opacity-50`}
+                        >
+                            {item.badge.text}
+                        </span>
+                    )}
+                </Link>
+            )}
         </li>
     );
 };

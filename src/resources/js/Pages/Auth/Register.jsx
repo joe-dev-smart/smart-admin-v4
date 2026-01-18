@@ -1,9 +1,10 @@
 import AuthLayout from '@/layouts/AuthLayout';
 import { Link, useForm } from '@inertiajs/react';
 import { Form, Button, Card } from 'react-bootstrap';
-import { auth } from '@/config/labels';
+import { useTranslation } from 'react-i18next';
 
 export default function Register() {
+    const { t } = useTranslation('auth');
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
         email: '',
@@ -19,11 +20,11 @@ export default function Register() {
     };
 
     return (
-        <AuthLayout title={auth.createAccount}>
+        <AuthLayout title={t('createAccount')}>
             <Card className="auth-card border-0 shadow-lg">
                 <Card.Body className="p-4 p-md-5">
                     <h5 className="text-center mb-4 fw-bold text-dark">
-                        {auth.createAccount}
+                        {t('createAccount')}
                     </h5>
 
                     <Form onSubmit={submit}>
@@ -35,7 +36,7 @@ export default function Register() {
                                 autoComplete="name"
                                 autoFocus
                                 isInvalid={!!errors.name}
-                                placeholder={auth.namePlaceholder}
+                                placeholder={t('namePlaceholder')}
                                 className="auth-input"
                                 size="lg"
                             />
@@ -53,7 +54,7 @@ export default function Register() {
                                 onChange={(e) => setData('email', e.target.value)}
                                 autoComplete="username"
                                 isInvalid={!!errors.email}
-                                placeholder={auth.email}
+                                placeholder={t('email')}
                                 className="auth-input"
                                 size="lg"
                             />
@@ -71,7 +72,7 @@ export default function Register() {
                                 onChange={(e) => setData('password', e.target.value)}
                                 autoComplete="new-password"
                                 isInvalid={!!errors.password}
-                                placeholder={auth.passwordPlaceholder}
+                                placeholder={t('passwordPlaceholder')}
                                 className="auth-input"
                                 size="lg"
                             />
@@ -89,7 +90,7 @@ export default function Register() {
                                 onChange={(e) => setData('password_confirmation', e.target.value)}
                                 autoComplete="new-password"
                                 isInvalid={!!errors.password_confirmation}
-                                placeholder={auth.confirmPasswordPlaceholder}
+                                placeholder={t('confirmPasswordPlaceholder')}
                                 className="auth-input"
                                 size="lg"
                             />
@@ -107,7 +108,7 @@ export default function Register() {
                                 size="lg"
                                 disabled={processing}
                             >
-                                {processing ? auth.registering : auth.registerButton}
+                                {processing ? t('registering') : t('registerButton')}
                             </Button>
                         </div>
                     </Form>
@@ -116,9 +117,9 @@ export default function Register() {
 
             <div className="text-center mt-4">
                 <p className="auth-link-text mb-0">
-                    {auth.hasAccount}{' '}
+                    {t('hasAccount')}{' '}
                     <Link href={route('login')} className="text-primary fw-semibold">
-                        {auth.login}
+                        {t('login')}
                     </Link>
                 </p>
             </div>

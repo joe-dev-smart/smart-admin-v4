@@ -1,14 +1,15 @@
 import { Head } from '@inertiajs/react';
 import { Container, Row, Col } from 'react-bootstrap';
 import { IconPhone, IconWorld, IconMail } from '@tabler/icons-react';
+import { useTranslation } from 'react-i18next';
 import appConfig from '@/config/app';
-import { company as companyLabels } from '@/config/labels';
 
 /**
  * AuthLayout - Reusable layout for authentication pages (Login, Register, etc.)
  * Features a two-column design with branding on the left and form on the right
  */
 export default function AuthLayout({ children, title }) {
+    const { t } = useTranslation();
     const { company, assets, copyright } = appConfig;
 
     return (
@@ -21,15 +22,15 @@ export default function AuthLayout({ children, title }) {
                         <Col lg={6} className="auth-branding d-none d-lg-flex flex-column justify-content-center align-items-center p-5">
                             <div className="auth-branding-content text-center text-white">
                                 <h1 className="auth-title mb-4">
-                                    {companyLabels.welcomeTitle}
+                                    {t('company.welcomeTitle')}
                                 </h1>
 
                                 <p className="auth-tagline mb-4">
-                                    {companyLabels.tagline}
+                                    {t('company.tagline')}
                                 </p>
 
                                 <p className="auth-description mb-5">
-                                    {companyLabels.description}
+                                    {t('company.description')}
                                 </p>
 
                                 <div className="auth-logo mb-5">
@@ -95,9 +96,9 @@ export default function AuthLayout({ children, title }) {
 
                 {/* Footer */}
                 <div className="auth-footer">
-                    <span className="text-warning">{companyLabels.copyright}</span>
+                    <span className="text-warning">{t('company.copyright')}</span>
                     {' - '}
-                    <span>{companyLabels.name}</span>
+                    <span>{t('company.name')}</span>
                     <span className="text-danger">®</span>
                     {' '}
                     <span className="text-primary">© {copyright.year}</span>

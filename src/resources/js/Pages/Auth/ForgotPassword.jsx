@@ -1,9 +1,10 @@
 import AuthLayout from '@/layouts/AuthLayout';
 import { Link, useForm } from '@inertiajs/react';
 import { Form, Button, Alert, Card } from 'react-bootstrap';
-import { auth } from '@/config/labels';
+import { useTranslation } from 'react-i18next';
 
 export default function ForgotPassword({ status }) {
+    const { t } = useTranslation('auth');
     const { data, setData, post, processing, errors } = useForm({
         email: '',
     });
@@ -14,15 +15,15 @@ export default function ForgotPassword({ status }) {
     };
 
     return (
-        <AuthLayout title={auth.resetPassword}>
+        <AuthLayout title={t('resetPassword')}>
             <Card className="auth-card border-0 shadow-lg">
                 <Card.Body className="p-4 p-md-5">
                     <h5 className="text-center mb-3 fw-bold text-dark">
-                        {auth.resetPassword}
+                        {t('resetPassword')}
                     </h5>
 
                     <p className="text-muted mb-4 text-center small">
-                        {auth.forgotPasswordDesc}
+                        {t('forgotPasswordDescription')}
                     </p>
 
                     {status && (
@@ -39,7 +40,7 @@ export default function ForgotPassword({ status }) {
                                 onChange={(e) => setData('email', e.target.value)}
                                 autoFocus
                                 isInvalid={!!errors.email}
-                                placeholder={auth.email}
+                                placeholder={t('email')}
                                 className="auth-input"
                                 size="lg"
                             />
@@ -57,7 +58,7 @@ export default function ForgotPassword({ status }) {
                                 size="lg"
                                 disabled={processing}
                             >
-                                {processing ? auth.sendingResetLink : auth.sendResetLink}
+                                {processing ? t('sendingResetLink') : t('sendResetLink')}
                             </Button>
                         </div>
                     </Form>
@@ -67,7 +68,7 @@ export default function ForgotPassword({ status }) {
                             href={route('login')}
                             className="text-muted small text-decoration-none"
                         >
-                            ← {auth.login}
+                            ← {t('login')}
                         </Link>
                     </div>
                 </Card.Body>

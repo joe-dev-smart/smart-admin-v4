@@ -1,9 +1,10 @@
 import AuthLayout from '@/layouts/AuthLayout';
 import { useForm } from '@inertiajs/react';
 import { Form, Button, Card } from 'react-bootstrap';
-import { auth } from '@/config/labels';
+import { useTranslation } from 'react-i18next';
 
 export default function ResetPassword({ token, email }) {
+    const { t } = useTranslation('auth');
     const { data, setData, post, processing, errors, reset } = useForm({
         token: token,
         email: email,
@@ -19,11 +20,11 @@ export default function ResetPassword({ token, email }) {
     };
 
     return (
-        <AuthLayout title={auth.resetPassword}>
+        <AuthLayout title={t('resetPassword')}>
             <Card className="auth-card border-0 shadow-lg">
                 <Card.Body className="p-4 p-md-5">
                     <h5 className="text-center mb-4 fw-bold text-dark">
-                        {auth.resetPassword}
+                        {t('resetPassword')}
                     </h5>
 
                     <Form onSubmit={submit}>
@@ -34,7 +35,7 @@ export default function ResetPassword({ token, email }) {
                                 onChange={(e) => setData('email', e.target.value)}
                                 autoComplete="username"
                                 isInvalid={!!errors.email}
-                                placeholder={auth.email}
+                                placeholder={t('email')}
                                 className="auth-input"
                                 size="lg"
                             />
@@ -53,7 +54,7 @@ export default function ResetPassword({ token, email }) {
                                 autoComplete="new-password"
                                 autoFocus
                                 isInvalid={!!errors.password}
-                                placeholder={auth.newPasswordPlaceholder}
+                                placeholder={t('newPasswordPlaceholder')}
                                 className="auth-input"
                                 size="lg"
                             />
@@ -71,7 +72,7 @@ export default function ResetPassword({ token, email }) {
                                 onChange={(e) => setData('password_confirmation', e.target.value)}
                                 autoComplete="new-password"
                                 isInvalid={!!errors.password_confirmation}
-                                placeholder={auth.confirmPasswordPlaceholder}
+                                placeholder={t('confirmPasswordPlaceholder')}
                                 className="auth-input"
                                 size="lg"
                             />
@@ -89,7 +90,7 @@ export default function ResetPassword({ token, email }) {
                                 size="lg"
                                 disabled={processing}
                             >
-                                {processing ? auth.resettingPassword : auth.resetPasswordButton}
+                                {processing ? t('resettingPassword') : t('resetPasswordButton')}
                             </Button>
                         </div>
                     </Form>

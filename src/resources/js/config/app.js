@@ -2,19 +2,15 @@
  * Application Configuration
  * Centralized configuration for app-wide settings
  *
- * Note: For UI text/labels, use @/config/labels.js instead.
- * This file is for configuration values (URLs, paths, contact info, etc.)
+ * Note: For UI text/labels that need translation, use i18n (useTranslation hook).
+ * This file is for static configuration values (URLs, paths, contact info, etc.)
  */
 
-import { company as companyLabels } from './labels';
-
 export const appConfig = {
-    // Company Information (text from labels, config values here)
+    // Company Information
     company: {
-        name: companyLabels.name,
-        fullName: companyLabels.fullName,
-        tagline: companyLabels.tagline,
-        description: companyLabels.description,
+        name: 'Smart Ideas',
+        fullName: 'Smart Ideas Bolivia',
         website: 'https://www.smartideasbo.com',
         phone: '+591 77455677',
         emails: {
@@ -42,7 +38,6 @@ export const appConfig = {
     // Copyright
     copyright: {
         year: new Date().getFullYear(),
-        text: companyLabels.copyright,
     },
 };
 

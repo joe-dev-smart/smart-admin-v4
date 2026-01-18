@@ -1,9 +1,10 @@
 import AuthLayout from '@/layouts/AuthLayout';
 import { Link, useForm } from '@inertiajs/react';
 import { Form, Button, Alert, Card } from 'react-bootstrap';
-import { auth } from '@/config/labels';
+import { useTranslation } from 'react-i18next';
 
 export default function Login({ status, canResetPassword }) {
+    const { t } = useTranslation('auth');
     const { data, setData, post, processing, errors, reset } = useForm({
         email: '',
         password: '',
@@ -18,7 +19,7 @@ export default function Login({ status, canResetPassword }) {
     };
 
     return (
-        <AuthLayout title={auth.login}>
+        <AuthLayout title={t('login')}>
             <Card className="auth-card border-0 shadow-lg">
                 <Card.Body className="p-4 p-md-5">
                     {status && (
@@ -36,7 +37,7 @@ export default function Login({ status, canResetPassword }) {
                                 autoComplete="username"
                                 autoFocus
                                 isInvalid={!!errors.email}
-                                placeholder={auth.emailPlaceholder}
+                                placeholder={t('emailPlaceholder')}
                                 className="auth-input"
                                 size="lg"
                             />
@@ -54,7 +55,7 @@ export default function Login({ status, canResetPassword }) {
                                 onChange={(e) => setData('password', e.target.value)}
                                 autoComplete="current-password"
                                 isInvalid={!!errors.password}
-                                placeholder={auth.passwordPlaceholder}
+                                placeholder={t('passwordPlaceholder')}
                                 className="auth-input"
                                 size="lg"
                             />
@@ -69,7 +70,7 @@ export default function Login({ status, canResetPassword }) {
                             <Form.Check
                                 type="checkbox"
                                 id="remember"
-                                label={auth.rememberMe}
+                                label={t('rememberMe')}
                                 checked={data.remember}
                                 onChange={(e) => setData('remember', e.target.checked)}
                                 className="auth-checkbox"
@@ -83,7 +84,7 @@ export default function Login({ status, canResetPassword }) {
                                 size="lg"
                                 disabled={processing}
                             >
-                                {processing ? auth.loggingIn : auth.loginButton}
+                                {processing ? t('loggingIn') : t('loginButton')}
                             </Button>
                         </div>
 
@@ -93,7 +94,7 @@ export default function Login({ status, canResetPassword }) {
                                     href={route('password.request')}
                                     className="text-muted small text-decoration-none"
                                 >
-                                    {auth.forgotPassword}
+                                    {t('forgotPassword')}
                                 </Link>
                             </div>
                         )}
@@ -103,9 +104,9 @@ export default function Login({ status, canResetPassword }) {
 
             <div className="text-center mt-4 d-lg-none">
                 <p className="text-muted mb-0">
-                    {auth.noAccount}{' '}
+                    {t('noAccount')}{' '}
                     <Link href={route('register')} className="text-primary fw-semibold">
-                        {auth.register}
+                        {t('register')}
                     </Link>
                 </p>
             </div>

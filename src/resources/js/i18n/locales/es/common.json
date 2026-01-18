@@ -1,0 +1,93 @@
+{
+    "app": {
+        "name": "Smart Admin",
+        "company": "SMART IDEAS"
+    },
+    "actions": {
+        "create": "Crear",
+        "edit": "Editar",
+        "delete": "Eliminar",
+        "save": "Guardar",
+        "cancel": "Cancelar",
+        "search": "Buscar...",
+        "clear": "Limpiar",
+        "back": "Volver",
+        "confirm": "Confirmar",
+        "close": "Cerrar",
+        "view": "Ver",
+        "export": "Exportar",
+        "import": "Importar",
+        "filter": "Filtrar",
+        "refresh": "Actualizar",
+        "loading": "Cargando...",
+        "saving": "Guardando...",
+        "deleting": "Eliminando...",
+        "processing": "Procesando..."
+    },
+    "status": {
+        "enabled": "Habilitado",
+        "disabled": "Deshabilitado",
+        "active": "Activo",
+        "inactive": "Inactivo",
+        "all": "Todos"
+    },
+    "messages": {
+        "confirmDelete": "¿Está seguro que desea eliminar este registro?",
+        "confirmDeleteTitle": "Confirmar eliminación",
+        "deleteSuccess": "Registro eliminado exitosamente",
+        "deleteError": "Error al eliminar el registro",
+        "saveSuccess": "Registro guardado exitosamente",
+        "saveError": "Error al guardar el registro",
+        "loadError": "Error al cargar los datos",
+        "noResults": "No se encontraron resultados",
+        "requiredField": "Este campo es requerido"
+    },
+    "table": {
+        "showing": "Mostrando",
+        "of": "de",
+        "entries": "registros",
+        "noData": "No hay datos disponibles",
+        "actions": "Acciones",
+        "perPage": "Por página",
+        "page": "Página",
+        "first": "Primera",
+        "last": "Última",
+        "next": "Siguiente",
+        "previous": "Anterior"
+    },
+    "form": {
+        "required": "Requerido",
+        "optional": "Opcional",
+        "selectOption": "Seleccione una opción",
+        "yes": "Sí",
+        "no": "No"
+    },
+    "validation": {
+        "required": "El campo {{field}} es requerido",
+        "email": "Ingrese un correo electrónico válido",
+        "min": "El campo debe tener al menos {{min}} caracteres",
+        "max": "El campo no puede tener más de {{max}} caracteres",
+        "numeric": "El campo debe ser numérico",
+        "url": "Ingrese una URL válida"
+    },
+    "nav": {
+        "dashboard": "Tablero",
+        "stores": "Ubicaciones",
+        "clients": "Clientes",
+        "providers": "Proveedores",
+        "products": "Productos",
+        "movements": "Movimientos",
+        "sales": "Ventas",
+        "reports": "Reportes",
+        "settings": "Configuración",
+        "logout": "Cerrar sesión"
+    },
+    "company": {
+        "name": "SMART IDEAS",
+        "fullName": "Smart Admin+",
+        "welcomeTitle": "Bienvenido a Smart Admin+",
+        "tagline": "Tu sistema inteligente de gestión empresarial",
+        "description": "Simplificamos la gestión de tu negocio con herramientas poderosas e intuitivas para control de inventario, ventas, reportes y mucho más.",
+        "copyright": "Todos los derechos reservados"
+    }
+}

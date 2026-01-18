@@ -7,6 +7,13 @@ import {
     IconHeadset,
     IconLock,
     IconLogout2,
+    IconBuildingStore,
+    IconUsers,
+    IconTruck,
+    IconPackage,
+    IconArrowsExchange,
+    IconShoppingCart,
+    IconReportAnalytics,
 } from '@tabler/icons-react';
 
 export const userDropdownItems = [
@@ -54,9 +61,57 @@ export const menuItems = [
     },
     {
         key: 'dashboard',
-        label: 'Dashboard',
+        label: 'nav.dashboard',
         icon: IconLayoutDashboard,
         url: '/dashboard',
+    },
+    {
+        key: 'stores',
+        label: 'nav.stores',
+        icon: IconBuildingStore,
+        url: '/stores',
+    },
+    {
+        key: 'clients',
+        label: 'nav.clients',
+        icon: IconUsers,
+        url: '/clients',
+        disabled: true, // Coming soon
+    },
+    {
+        key: 'providers',
+        label: 'nav.providers',
+        icon: IconTruck,
+        url: '/providers',
+        disabled: true, // Coming soon
+    },
+    {
+        key: 'products',
+        label: 'nav.products',
+        icon: IconPackage,
+        url: '/products',
+        disabled: true, // Coming soon
+    },
+    {
+        key: 'movements',
+        label: 'nav.movements',
+        icon: IconArrowsExchange,
+        url: '/movements',
+        disabled: true, // Coming soon
+    },
+    {
+        key: 'sales',
+        label: 'nav.sales',
+        icon: IconShoppingCart,
+        url: '/sales',
+        disabled: true, // Coming soon
+    },
+    {
+        key: 'reports',
+        label: 'nav.reports',
+        icon: IconReportAnalytics,
+        url: '/reports',
+        disabled: true, // Coming soon
     },
 ];
 

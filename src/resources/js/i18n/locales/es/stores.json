@@ -1,0 +1,41 @@
+{
+    "title": "Ubicaciones",
+    "subtitle": "Gestión de ubicaciones y sucursales",
+    "singular": "Ubicación",
+    "plural": "Ubicaciones",
+    "create": {
+        "title": "Nueva Ubicación",
+        "subtitle": "Registrar una nueva ubicación o sucursal"
+    },
+    "edit": {
+        "title": "Editar Ubicación",
+        "subtitle": "Modificar información de la ubicación"
+    },
+    "fields": {
+        "name": "Nombre",
+        "namePlaceholder": "Nombre de la ubicación",
+        "phone": "Teléfono",
+        "phonePlaceholder": "Número de teléfono",
+        "address": "Dirección",
+        "addressPlaceholder": "Dirección física",
+        "googleMapsUrl": "URL de Google Maps",
+        "googleMapsUrlPlaceholder": "https://maps.google.com/...",
+        "description": "Descripción",
+        "descriptionPlaceholder": "Descripción adicional",
+        "allowSales": "Permitir Ventas",
+        "status": "Estado"
+    },
+    "table": {
+        "name": "Nombre",
+        "phoneAddress": "Teléfono / Dirección",
+        "allowSales": "Permitir Ventas",
+        "status": "Estado"
+    },
+    "messages": {
+        "created": "Ubicación creada exitosamente",
+        "updated": "Ubicación actualizada exitosamente",
+        "deleted": "Ubicación eliminada exitosamente",
+        "confirmDelete": "¿Está seguro que desea eliminar la ubicación \"{{name}}\"?",
+        "hasRelatedRecords": "No se puede eliminar esta ubicación porque tiene registros relacionados"
+    }
+}

@@ -1,0 +1,93 @@
+{
+    "app": {
+        "name": "Smart Admin",
+        "company": "SMART IDEAS"
+    },
+    "actions": {
+        "create": "Create",
+        "edit": "Edit",
+        "delete": "Delete",
+        "save": "Save",
+        "cancel": "Cancel",
+        "search": "Search...",
+        "clear": "Clear",
+        "back": "Back",
+        "confirm": "Confirm",
+        "close": "Close",
+        "view": "View",
+        "export": "Export",
+        "import": "Import",
+        "filter": "Filter",
+        "refresh": "Refresh",
+        "loading": "Loading...",
+        "saving": "Saving...",
+        "deleting": "Deleting...",
+        "processing": "Processing..."
+    },
+    "status": {
+        "enabled": "Enabled",
+        "disabled": "Disabled",
+        "active": "Active",
+        "inactive": "Inactive",
+        "all": "All"
+    },
+    "messages": {
+        "confirmDelete": "Are you sure you want to delete this record?",
+        "confirmDeleteTitle": "Confirm deletion",
+        "deleteSuccess": "Record deleted successfully",
+        "deleteError": "Error deleting record",
+        "saveSuccess": "Record saved successfully",
+        "saveError": "Error saving record",
+        "loadError": "Error loading data",
+        "noResults": "No results found",
+        "requiredField": "This field is required"
+    },
+    "table": {
+        "showing": "Showing",
+        "of": "of",
+        "entries": "entries",
+        "noData": "No data available",
+        "actions": "Actions",
+        "perPage": "Per page",
+        "page": "Page",
+        "first": "First",
+        "last": "Last",
+        "next": "Next",
+        "previous": "Previous"
+    },
+    "form": {
+        "required": "Required",
+        "optional": "Optional",
+        "selectOption": "Select an option",
+        "yes": "Yes",
+        "no": "No"
+    },
+    "validation": {
+        "required": "The {{field}} field is required",
+        "email": "Enter a valid email address",
+        "min": "The field must have at least {{min}} characters",
+        "max": "The field cannot have more than {{max}} characters",
+        "numeric": "The field must be numeric",
+        "url": "Enter a valid URL"
+    },
+    "nav": {
+        "dashboard": "Dashboard",
+        "stores": "Stores",
+        "clients": "Clients",
+        "providers": "Providers",
+        "products": "Products",
+        "movements": "Movements",
+        "sales": "Sales",
+        "reports": "Reports",
+        "settings": "Settings",
+        "logout": "Logout"
+    },
+    "company": {
+        "name": "SMART IDEAS",
+        "fullName": "Smart Admin+",
+        "welcomeTitle": "Welcome to Smart Admin+",
+        "tagline": "Your intelligent business management system",
+        "description": "We simplify your business management with powerful and intuitive tools for inventory control, sales, reports, and much more.",
+        "copyright": "All rights reserved"
+    }
+}

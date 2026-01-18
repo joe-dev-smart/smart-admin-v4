@@ -1,0 +1,41 @@
+{
+    "title": "Stores",
+    "subtitle": "Store and branch management",
+    "singular": "Store",
+    "plural": "Stores",
+    "create": {
+        "title": "New Store",
+        "subtitle": "Register a new store or branch"
+    },
+    "edit": {
+        "title": "Edit Store",
+        "subtitle": "Modify store information"
+    },
+    "fields": {
+        "name": "Name",
+        "namePlaceholder": "Store name",
+        "phone": "Phone",
+        "phonePlaceholder": "Phone number",
+        "address": "Address",
+        "addressPlaceholder": "Physical address",
+        "googleMapsUrl": "Google Maps URL",
+        "googleMapsUrlPlaceholder": "https://maps.google.com/...",
+        "description": "Description",
+        "descriptionPlaceholder": "Additional description",
+        "allowSales": "Allow Sales",
+        "status": "Status"
+    },
+    "table": {
+        "name": "Name",
+        "phoneAddress": "Phone / Address",
+        "allowSales": "Allow Sales",
+        "status": "Status"
+    },
+    "messages": {
+        "created": "Store created successfully",
+        "updated": "Store updated successfully",
+        "deleted": "Store deleted successfully",
+        "confirmDelete": "Are you sure you want to delete the store \"{{name}}\"?",
+        "hasRelatedRecords": "Cannot delete this store because it has related records"
+    }
+}

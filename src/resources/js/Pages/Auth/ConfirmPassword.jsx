@@ -1,9 +1,10 @@
 import AuthLayout from '@/layouts/AuthLayout';
 import { useForm } from '@inertiajs/react';
 import { Form, Button, Card } from 'react-bootstrap';
-import { auth } from '@/config/labels';
+import { useTranslation } from 'react-i18next';
 
 export default function ConfirmPassword() {
+    const { t } = useTranslation('auth');
     const { data, setData, post, processing, errors, reset } = useForm({
         password: '',
     });
@@ -16,15 +17,15 @@ export default function ConfirmPassword() {
     };
 
     return (
-        <AuthLayout title={auth.confirmPasswordTitle}>
+        <AuthLayout title={t('confirmPasswordTitle')}>
             <Card className="auth-card border-0 shadow-lg">
                 <Card.Body className="p-4 p-md-5">
                     <h5 className="text-center mb-3 fw-bold text-dark">
-                        {auth.confirmPasswordTitle}
+                        {t('confirmPasswordTitle')}
                     </h5>
 
                     <p className="text-muted mb-4 text-center small">
-                        {auth.confirmPasswordDesc}
+                        {t('confirmPasswordDescription')}
                     </p>
 
                     <Form onSubmit={submit}>
@@ -35,7 +36,7 @@ export default function ConfirmPassword() {
                                 onChange={(e) => setData('password', e.target.value)}
                                 autoFocus
                                 isInvalid={!!errors.password}
-                                placeholder={auth.passwordPlaceholder}
+                                placeholder={t('passwordPlaceholder')}
                                 className="auth-input"
                                 size="lg"
                             />
@@ -53,7 +54,7 @@ export default function ConfirmPassword() {
                                 size="lg"
                                 disabled={processing}
                             >
-                                {processing ? auth.confirming : auth.confirmButton}
+                                {processing ? t('confirming') : t('confirmButton')}
                             </Button>
                         </div>
                     </Form>

@@ -1,9 +1,10 @@
 import AuthLayout from '@/layouts/AuthLayout';
 import { Link, useForm } from '@inertiajs/react';
 import { Button, Alert, Card } from 'react-bootstrap';
-import { auth } from '@/config/labels';
+import { useTranslation } from 'react-i18next';
 
 export default function VerifyEmail({ status }) {
+    const { t } = useTranslation('auth');
     const { post, processing } = useForm({});
 
     const submit = (e) => {
@@ -12,20 +13,20 @@ export default function VerifyEmail({ status }) {
     };
 
     return (
-        <AuthLayout title={auth.verifyEmail}>
+        <AuthLayout title={t('verifyEmail')}>
             <Card className="auth-card border-0 shadow-lg">
                 <Card.Body className="p-4 p-md-5">
                     <h5 className="text-center mb-3 fw-bold text-dark">
-                        {auth.verifyEmail}
+                        {t('verifyEmail')}
                     </h5>
 
                     <p className="text-muted mb-4 text-center small">
-                        {auth.verifyEmailDesc}
+                        {t('verifyEmailDescription')}
                     </p>
 
                     {status === 'verification-link-sent' && (
                         <Alert variant="success" className="mb-4">
-                            {auth.verificationSent}
+                            {t('verificationLinkSent')}
                         </Alert>
                     )}
 
@@ -37,7 +38,7 @@ export default function VerifyEmail({ status }) {
                                 size="lg"
                                 disabled={processing}
                             >
-                                {processing ? auth.sendingVerification : auth.resendVerification}
+                                {processing ? t('sendingVerification') : t('resendVerification')}
                             </Button>
 
                             <Link
@@ -46,7 +47,7 @@ export default function VerifyEmail({ status }) {
                                 as="button"
                                 className="btn btn-outline-secondary btn-lg"
                             >
-                                {auth.logout}
+                                {t('logout')}
                             </Link>
                         </div>
                     </form>
