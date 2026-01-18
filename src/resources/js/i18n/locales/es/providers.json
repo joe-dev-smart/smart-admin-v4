@@ -1,0 +1,52 @@
+{
+    "title": "Proveedores",
+    "subtitle": "Gestión de proveedores",
+    "index": {
+        "title": "Lista de Proveedores",
+        "subtitle": "Administra los proveedores del sistema",
+        "addNew": "Nuevo Proveedor",
+        "noResults": "No se encontraron proveedores",
+        "noResultsDescription": "No hay proveedores que coincidan con tu búsqueda."
+    },
+    "create": {
+        "title": "Crear Proveedor",
+        "subtitle": "Registra un nuevo proveedor en el sistema"
+    },
+    "edit": {
+        "title": "Editar Proveedor",
+        "subtitle": "Modifica la información del proveedor"
+    },
+    "fields": {
+        "name": "Nombre / Razón Social",
+        "namePlaceholder": "Ingresa el nombre o razón social",
+        "nit": "NIT / CI",
+        "nitPlaceholder": "Ingresa el NIT o CI",
+        "email": "Correo Electrónico",
+        "emailPlaceholder": "proveedor@ejemplo.com",
+        "cellphone": "Celular",
+        "cellphonePlaceholder": "Ingresa el celular",
+        "cellphone2": "Celular 2",
+        "cellphone2Placeholder": "Ingresa el celular secundario",
+        "phone": "Teléfono",
+        "phonePlaceholder": "Ingresa el teléfono",
+        "phone2": "Teléfono 2",
+        "phone2Placeholder": "Ingresa el teléfono secundario",
+        "address": "Dirección",
+        "addressPlaceholder": "Ingresa la dirección",
+        "observation": "Observaciones",
+        "observationPlaceholder": "Ingresa observaciones adicionales",
+        "status": "Estado"
+    },
+    "messages": {
+        "created": "Proveedor creado exitosamente",
+        "updated": "Proveedor actualizado exitosamente",
+        "deleted": "Proveedor eliminado exitosamente",
+        "deleteConfirm": "¿Estás seguro de eliminar este proveedor?",
+        "deleteWarning": "Esta acción no se puede deshacer."
+    },
+    "filters": {
+        "all": "Todos",
+        "enabled": "Activos",
+        "disabled": "Inactivos"
+    }
+}

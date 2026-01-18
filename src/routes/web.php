@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\StoreController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -30,6 +31,9 @@ Route::middleware('auth')->group(function () {
 
     // Clients (Clientes)
     Route::resource('clients', ClientController::class);
+
+    // Providers (Proveedores)
+    Route::resource('providers', ProviderController::class);
 });
 
 require __DIR__.'/auth.php';

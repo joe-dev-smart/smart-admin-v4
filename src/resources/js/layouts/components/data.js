@@ -82,7 +82,6 @@ export const menuItems = [
         label: 'nav.providers',
         icon: IconTruck,
         url: '/providers',
-        disabled: true, // Coming soon
     },
     {
         key: 'products',
