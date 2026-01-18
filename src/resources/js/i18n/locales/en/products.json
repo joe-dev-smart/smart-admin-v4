@@ -1,0 +1,86 @@
+{
+    "title": "Products",
+    "subtitle": "Product management",
+    "index": {
+        "title": "Product List",
+        "subtitle": "Manage system products",
+        "addNew": "New Product",
+        "noResults": "No products found",
+        "noResultsDescription": "There are no products matching your search."
+    },
+    "create": {
+        "title": "Create Product",
+        "subtitle": "Register a new product in the system"
+    },
+    "edit": {
+        "title": "Edit Product",
+        "subtitle": "Modify product information"
+    },
+    "fields": {
+        "name": "Name",
+        "namePlaceholder": "Enter product name",
+        "code": "Code/SKU",
+        "codePlaceholder": "Enter product code",
+        "barcode": "Barcode",
+        "barcodePlaceholder": "Enter barcode",
+        "category": "Category",
+        "categoryPlaceholder": "Select a category",
+        "brand": "Brand",
+        "brandPlaceholder": "Select a brand",
+        "type": "Type",
+        "typePlaceholder": "Select product type",
+        "unitOfMeasurement": "Unit of Measurement",
+        "unitOfMeasurementPlaceholder": "Select unit of measurement",
+        "salePrice1": "General Price",
+        "salePrice1Placeholder": "0.00",
+        "salePrice2": "Public Sector Price",
+        "salePrice2Placeholder": "0.00",
+        "salePrice3": "Private Sector Price",
+        "salePrice3Placeholder": "0.00",
+        "salePrice4": "Wholesale Price",
+        "salePrice4Placeholder": "0.00",
+        "minimumStock": "Minimum Stock",
+        "minimumStockPlaceholder": "0",
+        "model": "Model",
+        "modelPlaceholder": "Enter model",
+        "size": "Size",
+        "sizePlaceholder": "Enter size",
+        "color": "Color",
+        "colorPlaceholder": "Enter color",
+        "description": "Description",
+        "descriptionPlaceholder": "Enter product description",
+        "status": "Status"
+    },
+    "types": {
+        "product": "Product",
+        "perishable_product": "Perishable Product",
+        "service": "Service"
+    },
+    "units": {
+        "unit": "Unit",
+        "piece": "Piece",
+        "meter": "Meter",
+        "package": "Package",
+        "kilo": "Kilo",
+        "litre": "Litre"
+    },
+    "sections": {
+        "basicInfo": "Basic Information",
+        "pricing": "Pricing",
+        "details": "Details"
+    },
+    "messages": {
+        "created": "Product created successfully",
+        "updated": "Product updated successfully",
+        "deleted": "Product deleted successfully",
+        "deleteConfirm": "Are you sure you want to delete this product?",
+        "deleteWarning": "This action cannot be undone."
+    },
+    "filters": {
+        "all": "All",
+        "enabled": "Active",
+        "disabled": "Inactive",
+        "allCategories": "All categories",
+        "allBrands": "All brands"
+    }
+}

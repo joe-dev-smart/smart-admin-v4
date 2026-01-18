@@ -100,7 +100,6 @@ export const menuItems = [
         label: 'nav.products',
         icon: IconPackage,
         url: '/products',
-        disabled: true, // Coming soon
     },
     {
         key: 'movements',

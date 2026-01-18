@@ -1,0 +1,86 @@
+{
+    "title": "Productos",
+    "subtitle": "Gestión de productos",
+    "index": {
+        "title": "Lista de Productos",
+        "subtitle": "Administra los productos del sistema",
+        "addNew": "Nuevo Producto",
+        "noResults": "No se encontraron productos",
+        "noResultsDescription": "No hay productos que coincidan con tu búsqueda."
+    },
+    "create": {
+        "title": "Crear Producto",
+        "subtitle": "Registra un nuevo producto en el sistema"
+    },
+    "edit": {
+        "title": "Editar Producto",
+        "subtitle": "Modifica la información del producto"
+    },
+    "fields": {
+        "name": "Nombre",
+        "namePlaceholder": "Ingresa el nombre del producto",
+        "code": "Código/SKU",
+        "codePlaceholder": "Ingresa el código del producto",
+        "barcode": "Código de Barras",
+        "barcodePlaceholder": "Ingresa el código de barras",
+        "category": "Categoría",
+        "categoryPlaceholder": "Selecciona una categoría",
+        "brand": "Marca",
+        "brandPlaceholder": "Selecciona una marca",
+        "type": "Tipo",
+        "typePlaceholder": "Selecciona el tipo de producto",
+        "unitOfMeasurement": "Unidad de Medida",
+        "unitOfMeasurementPlaceholder": "Selecciona la unidad de medida",
+        "salePrice1": "Precio General",
+        "salePrice1Placeholder": "0.00",
+        "salePrice2": "Precio Sector Público",
+        "salePrice2Placeholder": "0.00",
+        "salePrice3": "Precio Sector Privado",
+        "salePrice3Placeholder": "0.00",
+        "salePrice4": "Precio Mayorista",
+        "salePrice4Placeholder": "0.00",
+        "minimumStock": "Stock Mínimo",
+        "minimumStockPlaceholder": "0",
+        "model": "Modelo",
+        "modelPlaceholder": "Ingresa el modelo",
+        "size": "Tamaño",
+        "sizePlaceholder": "Ingresa el tamaño",
+        "color": "Color",
+        "colorPlaceholder": "Ingresa el color",
+        "description": "Descripción",
+        "descriptionPlaceholder": "Ingresa una descripción del producto",
+        "status": "Estado"
+    },
+    "types": {
+        "product": "Producto",
+        "perishable_product": "Producto Perecedero",
+        "service": "Servicio"
+    },
+    "units": {
+        "unit": "Unidad",
+        "piece": "Pieza",
+        "meter": "Metro",
+        "package": "Paquete",
+        "kilo": "Kilo",
+        "litre": "Litro"
+    },
+    "sections": {
+        "basicInfo": "Información Básica",
+        "pricing": "Precios",
+        "details": "Detalles"
+    },
+    "messages": {
+        "created": "Producto creado exitosamente",
+        "updated": "Producto actualizado exitosamente",
+        "deleted": "Producto eliminado exitosamente",
+        "deleteConfirm": "¿Estás seguro de eliminar este producto?",
+        "deleteWarning": "Esta acción no se puede deshacer."
+    },
+    "filters": {
+        "all": "Todos",
+        "enabled": "Activos",
+        "disabled": "Inactivos",
+        "allCategories": "Todas las categorías",
+        "allBrands": "Todas las marcas"
+    }
+}
