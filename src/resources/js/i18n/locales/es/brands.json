@@ -1,0 +1,38 @@
+{
+    "title": "Marcas",
+    "subtitle": "Gestión de marcas de productos",
+    "index": {
+        "title": "Lista de Marcas",
+        "subtitle": "Administra las marcas del sistema",
+        "addNew": "Nueva Marca",
+        "noResults": "No se encontraron marcas",
+        "noResultsDescription": "No hay marcas que coincidan con tu búsqueda."
+    },
+    "create": {
+        "title": "Crear Marca",
+        "subtitle": "Registra una nueva marca en el sistema"
+    },
+    "edit": {
+        "title": "Editar Marca",
+        "subtitle": "Modifica la información de la marca"
+    },
+    "fields": {
+        "name": "Nombre",
+        "namePlaceholder": "Ingresa el nombre de la marca",
+        "description": "Descripción",
+        "descriptionPlaceholder": "Ingresa una descripción",
+        "status": "Estado"
+    },
+    "messages": {
+        "created": "Marca creada exitosamente",
+        "updated": "Marca actualizada exitosamente",
+        "deleted": "Marca eliminada exitosamente",
+        "deleteConfirm": "¿Estás seguro de eliminar esta marca?",
+        "deleteWarning": "Esta acción no se puede deshacer."
+    },
+    "filters": {
+        "all": "Todas",
+        "enabled": "Activas",
+        "disabled": "Inactivas"
+    }
+}

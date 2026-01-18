@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProviderController;
@@ -34,6 +36,12 @@ Route::middleware('auth')->group(function () {
 
     // Providers (Proveedores)
     Route::resource('providers', ProviderController::class);
+
+    // Categories (Categorías)
+    Route::resource('categories', CategoryController::class);
+
+    // Brands (Marcas)
+    Route::resource('brands', BrandController::class);
 });
 
 require __DIR__.'/auth.php';

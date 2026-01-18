@@ -1,0 +1,42 @@
+{
+    "title": "Categorías",
+    "subtitle": "Gestión de categorías de productos",
+    "index": {
+        "title": "Lista de Categorías",
+        "subtitle": "Administra las categorías del sistema",
+        "addNew": "Nueva Categoría",
+        "noResults": "No se encontraron categorías",
+        "noResultsDescription": "No hay categorías que coincidan con tu búsqueda."
+    },
+    "create": {
+        "title": "Crear Categoría",
+        "subtitle": "Registra una nueva categoría en el sistema"
+    },
+    "edit": {
+        "title": "Editar Categoría",
+        "subtitle": "Modifica la información de la categoría"
+    },
+    "fields": {
+        "name": "Nombre",
+        "namePlaceholder": "Ingresa el nombre de la categoría",
+        "parent": "Categoría Padre",
+        "parentPlaceholder": "Selecciona una categoría padre (opcional)",
+        "noParent": "Sin categoría padre (categoría raíz)",
+        "description": "Descripción",
+        "descriptionPlaceholder": "Ingresa una descripción",
+        "status": "Estado"
+    },
+    "messages": {
+        "created": "Categoría creada exitosamente",
+        "updated": "Categoría actualizada exitosamente",
+        "deleted": "Categoría eliminada exitosamente",
+        "deleteConfirm": "¿Estás seguro de eliminar esta categoría?",
+        "deleteWarning": "Esta acción no se puede deshacer.",
+        "hasChildren": "No se puede eliminar una categoría que tiene subcategorías."
+    },
+    "filters": {
+        "all": "Todas",
+        "enabled": "Activas",
+        "disabled": "Inactivas"
+    }
+}

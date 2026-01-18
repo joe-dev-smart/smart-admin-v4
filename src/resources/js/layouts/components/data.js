@@ -2,10 +2,8 @@ import {
     IconLayoutDashboard,
     IconUserCircle,
     IconBellRinging,
-    IconCreditCard,
     IconSettings2,
     IconHeadset,
-    IconLock,
     IconLogout2,
     IconBuildingStore,
     IconUsers,
@@ -14,6 +12,8 @@ import {
     IconArrowsExchange,
     IconShoppingCart,
     IconReportAnalytics,
+    IconCategory,
+    IconTag,
 } from '@tabler/icons-react';
 
 export const userDropdownItems = [
@@ -82,6 +82,18 @@ export const menuItems = [
         label: 'nav.providers',
         icon: IconTruck,
         url: '/providers',
+    },
+    {
+        key: 'categories',
+        label: 'nav.categories',
+        icon: IconCategory,
+        url: '/categories',
+    },
+    {
+        key: 'brands',
+        label: 'nav.brands',
+        icon: IconTag,
+        url: '/brands',
     },
     {
         key: 'products',
