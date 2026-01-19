@@ -1,8 +1,10 @@
 import { useForm } from '@inertiajs/react';
+import { useTranslation } from 'react-i18next';
 import { useRef } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 export default function UpdatePasswordForm() {
+    const { t } = useTranslation('profile');
     const passwordInput = useRef();
     const currentPasswordInput = useRef();
 
@@ -43,18 +45,19 @@ export default function UpdatePasswordForm() {
     return (
         <div>
             <p className="text-muted mb-4">
-                Ensure your account is using a long, random password to stay secure.
+                {t('sections.updatePasswordDescription')}
             </p>
 
             <Form onSubmit={updatePassword}>
                 <Form.Group className="mb-3">
-                    <Form.Label>Current Password</Form.Label>
+                    <Form.Label>{t('fields.currentPassword')}</Form.Label>
                     <Form.Control
                         type="password"
                         ref={currentPasswordInput}
                         value={data.current_password}
                         onChange={(e) => setData('current_password', e.target.value)}
                         autoComplete="current-password"
+                        placeholder={t('fields.currentPasswordPlaceholder')}
                         isInvalid={!!errors.current_password}
                     />
                     {errors.current_password && (
@@ -65,13 +68,14 @@ export default function UpdatePasswordForm() {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>New Password</Form.Label>
+                    <Form.Label>{t('fields.newPassword')}</Form.Label>
                     <Form.Control
                         type="password"
                         ref={passwordInput}
                         value={data.password}
                         onChange={(e) => setData('password', e.target.value)}
                         autoComplete="new-password"
+                        placeholder={t('fields.newPasswordPlaceholder')}
                         isInvalid={!!errors.password}
                     />
                     {errors.password && (
@@ -82,12 +86,13 @@ export default function UpdatePasswordForm() {
                 </Form.Group>
 
                 <Form.Group className="mb-3">
-                    <Form.Label>Confirm Password</Form.Label>
+                    <Form.Label>{t('fields.confirmPassword')}</Form.Label>
                     <Form.Control
                         type="password"
                         value={data.password_confirmation}
                         onChange={(e) => setData('password_confirmation', e.target.value)}
                         autoComplete="new-password"
+                        placeholder={t('fields.confirmPasswordPlaceholder')}
                         isInvalid={!!errors.password_confirmation}
                     />
                     {errors.password_confirmation && (
@@ -97,14 +102,16 @@ export default function UpdatePasswordForm() {
                     )}
                 </Form.Group>
 
+                {recentlySuccessful && (
+                    <Alert variant="success" className="mb-3">
+                        {t('messages.passwordUpdated')}
+                    </Alert>
+                )}
+
                 <div className="d-flex align-items-center gap-3">
                     <Button type="submit" variant="primary" disabled={processing}>
-                        {processing ? 'Saving...' : 'Save'}
+                        {processing ? t('actions.updatingPassword') : t('actions.updatePassword')}
                     </Button>
-
-                    {recentlySuccessful && (
-                        <span className="text-success">Saved.</span>
-                    )}
                 </div>
             </Form>
         </div>

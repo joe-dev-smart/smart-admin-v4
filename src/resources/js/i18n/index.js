@@ -10,6 +10,7 @@ import esProviders from './locales/es/providers.json';
 import esCategories from './locales/es/categories.json';
 import esBrands from './locales/es/brands.json';
 import esProducts from './locales/es/products.json';
+import esProfile from './locales/es/profile.json';
 import esAuth from './locales/es/auth.json';
 import enCommon from './locales/en/common.json';
 import enStores from './locales/en/stores.json';
@@ -18,6 +19,7 @@ import enProviders from './locales/en/providers.json';
 import enCategories from './locales/en/categories.json';
 import enBrands from './locales/en/brands.json';
 import enProducts from './locales/en/products.json';
+import enProfile from './locales/en/profile.json';
 import enAuth from './locales/en/auth.json';
 
 const resources = {
@@ -29,6 +31,7 @@ const resources = {
         categories: esCategories,
         brands: esBrands,
         products: esProducts,
+        profile: esProfile,
         auth: esAuth,
     },
     en: {
@@ -39,6 +42,7 @@ const resources = {
         categories: enCategories,
         brands: enBrands,
         products: enProducts,
+        profile: enProfile,
         auth: enAuth,
     },
 };
@@ -50,7 +54,7 @@ i18n
         resources,
         fallbackLng: 'es', // Default to Spanish
         defaultNS: 'common',
-        ns: ['common', 'stores', 'clients', 'providers', 'categories', 'brands', 'products', 'auth'],
+        ns: ['common', 'stores', 'clients', 'providers', 'categories', 'brands', 'products', 'profile', 'auth'],
         interpolation: {
             escapeValue: false, // React already handles XSS
         },

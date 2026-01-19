@@ -1,38 +1,34 @@
 import MainLayout from '@/layouts/MainLayout';
 import { Head } from '@inertiajs/react';
+import { useTranslation } from 'react-i18next';
 import { Card, Col, Row } from 'react-bootstrap';
+import { PageHeader } from '@/components/ui';
 import DeleteUserForm from './Partials/DeleteUserForm';
 import UpdatePasswordForm from './Partials/UpdatePasswordForm';
 import UpdateProfileInformationForm from './Partials/UpdateProfileInformationForm';
 
 export default function Edit({ mustVerifyEmail, status }) {
+    const { t } = useTranslation(['profile', 'common']);
+
     return (
         <MainLayout>
-            <Head title="Profile" />
+            <Head title={t('profile:title')} />
 
             <div className="container-fluid">
-                {/* Page Title */}
-                <div className="row">
-                    <div className="col-12">
-                        <div className="page-title-box">
-                            <h4 className="page-title">Profile Settings</h4>
-                            <div className="page-title-right">
-                                <ol className="breadcrumb m-0">
-                                    <li className="breadcrumb-item">
-                                        <a href="#">Home</a>
-                                    </li>
-                                    <li className="breadcrumb-item active">Profile</li>
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <PageHeader
+                    title={t('profile:title')}
+                    subtitle={t('profile:subtitle')}
+                    breadcrumbs={[
+                        { label: t('common:nav.dashboard'), href: route('dashboard') },
+                        { label: t('profile:title') },
+                    ]}
+                />
 
                 <Row>
                     <Col lg={12}>
                         <Card className="mb-4">
                             <Card.Header>
-                                <h5 className="card-title mb-0">Profile Information</h5>
+                                <h5 className="card-title mb-0">{t('profile:sections.personalInfo')}</h5>
                             </Card.Header>
                             <Card.Body>
                                 <UpdateProfileInformationForm
@@ -44,7 +40,7 @@ export default function Edit({ mustVerifyEmail, status }) {
 
                         <Card className="mb-4">
                             <Card.Header>
-                                <h5 className="card-title mb-0">Update Password</h5>
+                                <h5 className="card-title mb-0">{t('profile:sections.updatePassword')}</h5>
                             </Card.Header>
                             <Card.Body>
                                 <UpdatePasswordForm />
@@ -53,7 +49,7 @@ export default function Edit({ mustVerifyEmail, status }) {
 
                         <Card className="mb-4">
                             <Card.Header>
-                                <h5 className="card-title mb-0 text-danger">Delete Account</h5>
+                                <h5 className="card-title mb-0 text-danger">{t('profile:sections.deleteAccount')}</h5>
                             </Card.Header>
                             <Card.Body>
                                 <DeleteUserForm />

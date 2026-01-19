@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 export default function Login({ status, canResetPassword }) {
     const { t } = useTranslation('auth');
     const { data, setData, post, processing, errors, reset } = useForm({
-        email: '',
+        login: '',
         password: '',
         remember: false,
     });
@@ -31,19 +31,19 @@ export default function Login({ status, canResetPassword }) {
                     <Form onSubmit={submit}>
                         <Form.Group className="mb-4">
                             <Form.Control
-                                type="email"
-                                value={data.email}
-                                onChange={(e) => setData('email', e.target.value)}
+                                type="text"
+                                value={data.login}
+                                onChange={(e) => setData('login', e.target.value)}
                                 autoComplete="username"
                                 autoFocus
-                                isInvalid={!!errors.email}
-                                placeholder={t('emailPlaceholder')}
+                                isInvalid={!!errors.login}
+                                placeholder={t('loginPlaceholder')}
                                 className="auth-input"
                                 size="lg"
                             />
-                            {errors.email && (
+                            {errors.login && (
                                 <Form.Control.Feedback type="invalid">
-                                    {errors.email}
+                                    {errors.login}
                                 </Form.Control.Feedback>
                             )}
                         </Form.Group>

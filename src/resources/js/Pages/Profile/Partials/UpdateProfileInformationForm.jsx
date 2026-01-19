@@ -1,13 +1,15 @@
-import { Link, useForm, usePage } from '@inertiajs/react';
-import { Form, Button, Alert } from 'react-bootstrap';
+import { useForm, usePage } from '@inertiajs/react';
+import { useTranslation } from 'react-i18next';
+import { Form, Button, Row, Col, Alert } from 'react-bootstrap';
 
-export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
+export default function UpdateProfileInformation({ status }) {
+    const { t } = useTranslation('profile');
     const user = usePage().props.auth.user;
 
     const { data, setData, patch, errors, processing, recentlySuccessful } =
         useForm({
-            name: user.name,
-            email: user.email,
+            name: user.name || '',
+            username: user.username || '',
         });
 
     const submit = (e) => {
@@ -18,70 +20,84 @@ export default function UpdateProfileInformation({ mustVerifyEmail, status }) {
     return (
         <div>
             <p className="text-muted mb-4">
-                Update your account's profile information and email address.
+                {t('sections.personalInfoDescription')}
             </p>
 
             <Form onSubmit={submit}>
-                <Form.Group className="mb-3">
-                    <Form.Label>Name</Form.Label>
-                    <Form.Control
-                        type="text"
-                        value={data.name}
-                        onChange={(e) => setData('name', e.target.value)}
-                        required
-                        autoComplete="name"
-                        isInvalid={!!errors.name}
-                    />
-                    {errors.name && (
-                        <Form.Control.Feedback type="invalid">
-                            {errors.name}
-                        </Form.Control.Feedback>
-                    )}
-                </Form.Group>
+                <Row>
+                    <Col md={6}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>{t('fields.name')} <span className="text-danger">*</span></Form.Label>
+                            <Form.Control
+                                type="text"
+                                value={data.name}
+                                onChange={(e) => setData('name', e.target.value)}
+                                required
+                                autoComplete="name"
+                                placeholder={t('fields.namePlaceholder')}
+                                isInvalid={!!errors.name}
+                            />
+                            {errors.name && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.name}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
+                    </Col>
 
-                <Form.Group className="mb-3">
-                    <Form.Label>Email</Form.Label>
-                    <Form.Control
-                        type="email"
-                        value={data.email}
-                        onChange={(e) => setData('email', e.target.value)}
-                        required
-                        autoComplete="username"
-                        isInvalid={!!errors.email}
-                    />
-                    {errors.email && (
-                        <Form.Control.Feedback type="invalid">
-                            {errors.email}
-                        </Form.Control.Feedback>
-                    )}
-                </Form.Group>
+                    <Col md={6}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>{t('fields.username')}</Form.Label>
+                            <Form.Control
+                                type="text"
+                                value={data.username}
+                                onChange={(e) => setData('username', e.target.value)}
+                                autoComplete="username"
+                                placeholder={t('fields.usernamePlaceholder')}
+                                isInvalid={!!errors.username}
+                            />
+                            <Form.Text className="text-muted">
+                                {t('fields.usernameHelp')}
+                            </Form.Text>
+                            {errors.username && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.username}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
+                    </Col>
 
-                {mustVerifyEmail && user.email_verified_at === null && (
-                    <Alert variant="warning" className="mb-3">
-                        Your email address is unverified.{' '}
-                        <Link
-                            href={route('verification.send')}
-                            method="post"
-                            as="button"
-                            className="alert-link"
-                        >
-                            Click here to re-send the verification email.
-                        </Link>
-                        {status === 'verification-link-sent' && (
-                            <div className="mt-2 text-success">
-                                A new verification link has been sent to your email address.
-                            </div>
-                        )}
+                    <Col md={6}>
+                        <Form.Group className="mb-3">
+                            <Form.Label>{t('fields.email')}</Form.Label>
+                            <Form.Control
+                                type="email"
+                                value={user.email}
+                                disabled
+                                readOnly
+                                className="bg-light"
+                            />
+                            <Form.Text className="text-muted">
+                                <i className="ri-lock-line me-1"></i>
+                                No editable
+                            </Form.Text>
+                        </Form.Group>
+                    </Col>
+                </Row>
+
+                {status === 'profile-updated' && (
+                    <Alert variant="success" className="mb-3">
+                        {t('messages.profileUpdated')}
                     </Alert>
                 )}
 
                 <div className="d-flex align-items-center gap-3">
                     <Button type="submit" variant="primary" disabled={processing}>
-                        {processing ? 'Saving...' : 'Save'}
+                        {processing ? t('actions.saving') : t('actions.save')}
                     </Button>
 
                     {recentlySuccessful && (
-                        <span className="text-success">Saved.</span>
+                        <span className="text-success">{t('actions.saved')}</span>
                     )}
                 </div>
             </Form>

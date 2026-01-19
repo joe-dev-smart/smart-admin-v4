@@ -1,0 +1,43 @@
+{
+    "title": "Profile",
+    "subtitle": "Profile settings",
+    "sections": {
+        "personalInfo": "Personal Information",
+        "personalInfoDescription": "Update your personal information. Email cannot be modified.",
+        "updatePassword": "Update Password",
+        "updatePasswordDescription": "Ensure your account is using a long, random password to stay secure.",
+        "deleteAccount": "Delete Account",
+        "deleteAccountDescription": "Once your account is deleted, all of its resources and data will be permanently deleted."
+    },
+    "fields": {
+        "name": "Name",
+        "namePlaceholder": "Your full name",
+        "username": "Username",
+        "usernamePlaceholder": "your_username",
+        "usernameHelp": "This will be your unique identifier. Only letters, numbers, dashes and underscores.",
+        "email": "Email",
+        "currentPassword": "Current password",
+        "currentPasswordPlaceholder": "Current password",
+        "newPassword": "New password",
+        "newPasswordPlaceholder": "New password",
+        "confirmPassword": "Confirm password",
+        "confirmPasswordPlaceholder": "Confirm new password"
+    },
+    "actions": {
+        "save": "Save",
+        "saving": "Saving...",
+        "saved": "Saved",
+        "updatePassword": "Update Password",
+        "updatingPassword": "Updating...",
+        "passwordUpdated": "Password updated",
+        "deleteAccount": "Delete Account",
+        "deletingAccount": "Deleting...",
+        "confirmDelete": "Are you sure you want to delete your account?"
+    },
+    "messages": {
+        "profileUpdated": "Profile updated successfully",
+        "passwordUpdated": "Password updated successfully",
+        "deleteWarning": "Once your account is deleted, all of its resources and data will be permanently deleted. Before deleting your account, please download any data or information you wish to retain.",
+        "enterPasswordToDelete": "Enter your password to confirm you would like to permanently delete your account."
+    }
+}

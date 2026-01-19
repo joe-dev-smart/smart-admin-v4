@@ -1,0 +1,43 @@
+{
+    "title": "Perfil",
+    "subtitle": "Configuración de perfil",
+    "sections": {
+        "personalInfo": "Información Personal",
+        "personalInfoDescription": "Actualiza tu información personal. El correo electrónico no puede ser modificado.",
+        "updatePassword": "Actualizar Contraseña",
+        "updatePasswordDescription": "Asegúrate de usar una contraseña larga y aleatoria para mantener tu cuenta segura.",
+        "deleteAccount": "Eliminar Cuenta",
+        "deleteAccountDescription": "Una vez que tu cuenta sea eliminada, todos sus recursos y datos serán eliminados permanentemente."
+    },
+    "fields": {
+        "name": "Nombre",
+        "namePlaceholder": "Tu nombre completo",
+        "username": "Nombre de usuario",
+        "usernamePlaceholder": "tu_usuario",
+        "usernameHelp": "Este será tu identificador único. Solo letras, números, guiones y guiones bajos.",
+        "email": "Correo electrónico",
+        "currentPassword": "Contraseña actual",
+        "currentPasswordPlaceholder": "Contraseña actual",
+        "newPassword": "Nueva contraseña",
+        "newPasswordPlaceholder": "Nueva contraseña",
+        "confirmPassword": "Confirmar contraseña",
+        "confirmPasswordPlaceholder": "Confirmar nueva contraseña"
+    },
+    "actions": {
+        "save": "Guardar",
+        "saving": "Guardando...",
+        "saved": "Guardado",
+        "updatePassword": "Actualizar Contraseña",
+        "updatingPassword": "Actualizando...",
+        "passwordUpdated": "Contraseña actualizada",
+        "deleteAccount": "Eliminar Cuenta",
+        "deletingAccount": "Eliminando...",
+        "confirmDelete": "¿Estás seguro de que deseas eliminar tu cuenta?"
+    },
+    "messages": {
+        "profileUpdated": "Perfil actualizado exitosamente",
+        "passwordUpdated": "Contraseña actualizada exitosamente",
+        "deleteWarning": "Una vez que tu cuenta sea eliminada, todos sus recursos y datos serán eliminados permanentemente. Antes de eliminar tu cuenta, por favor descarga cualquier dato o información que desees conservar.",
+        "enterPasswordToDelete": "Ingresa tu contraseña para confirmar que deseas eliminar permanentemente tu cuenta."
+    }
+}

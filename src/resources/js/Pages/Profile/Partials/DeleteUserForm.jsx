@@ -1,8 +1,10 @@
 import { useForm } from '@inertiajs/react';
+import { useTranslation } from 'react-i18next';
 import { useRef, useState } from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
 
 export default function DeleteUserForm() {
+    const { t } = useTranslation(['profile', 'common']);
     const [showModal, setShowModal] = useState(false);
     const passwordInput = useRef();
 
@@ -42,35 +44,31 @@ export default function DeleteUserForm() {
     return (
         <div>
             <p className="text-muted mb-4">
-                Once your account is deleted, all of its resources and data will be
-                permanently deleted. Before deleting your account, please download any
-                data or information that you wish to retain.
+                {t('profile:messages.deleteWarning')}
             </p>
 
             <Button variant="danger" onClick={confirmUserDeletion}>
-                Delete Account
+                {t('profile:actions.deleteAccount')}
             </Button>
 
             <Modal show={showModal} onHide={closeModal} centered>
                 <Form onSubmit={deleteUser}>
                     <Modal.Header closeButton>
-                        <Modal.Title>Delete Account</Modal.Title>
+                        <Modal.Title>{t('profile:actions.confirmDelete')}</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>
                         <p className="text-muted">
-                            Are you sure you want to delete your account? Once deleted,
-                            all of its resources and data will be permanently deleted.
-                            Please enter your password to confirm.
+                            {t('profile:messages.enterPasswordToDelete')}
                         </p>
 
                         <Form.Group className="mt-3">
-                            <Form.Label>Password</Form.Label>
+                            <Form.Label>{t('auth:password')}</Form.Label>
                             <Form.Control
                                 type="password"
                                 ref={passwordInput}
                                 value={data.password}
                                 onChange={(e) => setData('password', e.target.value)}
-                                placeholder="Enter your password"
+                                placeholder={t('auth:passwordPlaceholder')}
                                 isInvalid={!!errors.password}
                             />
                             {errors.password && (
@@ -82,10 +80,10 @@ export default function DeleteUserForm() {
                     </Modal.Body>
                     <Modal.Footer>
                         <Button variant="secondary" onClick={closeModal}>
-                            Cancel
+                            {t('common:actions.cancel')}
                         </Button>
                         <Button variant="danger" type="submit" disabled={processing}>
-                            {processing ? 'Deleting...' : 'Delete Account'}
+                            {processing ? t('profile:actions.deletingAccount') : t('profile:actions.deleteAccount')}
                         </Button>
                     </Modal.Footer>
                 </Form>
