@@ -1,0 +1,64 @@
+{
+    "title": "Transferencias",
+    "subtitle": "Gestión de transferencias entre ubicaciones",
+    "single": "Transferencia",
+    "newTransfer": "Nueva Transferencia",
+    "editTransfer": "Editar Transferencia",
+    "fields": {
+        "code": "Código",
+        "type": "Tipo",
+        "fromStore": "Origen",
+        "toStore": "Destino",
+        "transferDate": "Fecha de Transferencia",
+        "observation": "Observación",
+        "status": "Estado",
+        "createdBy": "Creado por",
+        "createdAt": "Fecha de Registro"
+    },
+    "types": {
+        "add": "Entrada",
+        "transfer": "Transferencia",
+        "remove": "Baja"
+    },
+    "placeholders": {
+        "observation": "Observaciones adicionales...",
+        "fromStore": "Seleccionar ubicación origen...",
+        "toStore": "Seleccionar ubicación destino..."
+    },
+    "statuses": {
+        "pending": "Pendiente",
+        "in_transit": "En Tránsito",
+        "completed": "Completada",
+        "cancelled": "Cancelada"
+    },
+    "sections": {
+        "generalInfo": "Información General",
+        "items": "Productos"
+    },
+    "items": {
+        "title": "Productos a Transferir",
+        "product": "Producto",
+        "quantity": "Cantidad",
+        "addItem": "Agregar",
+        "removeItem": "Quitar",
+        "noItems": "No hay productos agregados",
+        "selectProduct": "Seleccionar producto...",
+        "searchProduct": "Buscar producto por código o nombre...",
+        "noProductsFound": "No se encontraron productos"
+    },
+    "filters": {
+        "allStores": "Todas las ubicaciones",
+        "allStatuses": "Todos los estados",
+        "allTypes": "Todos los tipos",
+        "fromStore": "Ubicación origen",
+        "toStore": "Ubicación destino"
+    },
+    "messages": {
+        "created": "Transferencia registrada exitosamente",
+        "updated": "Transferencia actualizada exitosamente",
+        "deleted": "Transferencia eliminada exitosamente",
+        "confirmDelete": "¿Está seguro de eliminar esta transferencia?",
+        "minOneItem": "Debe agregar al menos un producto",
+        "sameStore": "La ubicación de origen y destino deben ser diferentes"
+    }
+}

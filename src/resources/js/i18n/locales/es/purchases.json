@@ -1,0 +1,63 @@
+{
+    "title": "Compras",
+    "subtitle": "Gestión de compras a proveedores",
+    "single": "Compra",
+    "newPurchase": "Nueva Compra",
+    "editPurchase": "Editar Compra",
+    "fields": {
+        "code": "Código",
+        "invoiceNumber": "Nro. Factura",
+        "provider": "Proveedor",
+        "store": "Ubicación",
+        "purchaseDate": "Fecha de Compra",
+        "subtotal": "Subtotal",
+        "tax": "Impuesto",
+        "discount": "Descuento",
+        "total": "Total",
+        "observation": "Observación",
+        "status": "Estado",
+        "createdBy": "Creado por",
+        "createdAt": "Fecha de Registro"
+    },
+    "placeholders": {
+        "invoiceNumber": "Número de factura del proveedor",
+        "observation": "Observaciones adicionales...",
+        "provider": "Seleccionar proveedor...",
+        "store": "Seleccionar ubicación..."
+    },
+    "statuses": {
+        "pending": "Pendiente",
+        "completed": "Completada",
+        "cancelled": "Cancelada"
+    },
+    "sections": {
+        "generalInfo": "Información General",
+        "items": "Productos",
+        "summary": "Resumen"
+    },
+    "items": {
+        "title": "Productos de la Compra",
+        "product": "Producto",
+        "quantity": "Cantidad",
+        "unitCost": "Costo Unitario",
+        "subtotal": "Subtotal",
+        "addItem": "Agregar",
+        "removeItem": "Quitar",
+        "noItems": "No hay productos agregados",
+        "selectProduct": "Seleccionar producto...",
+        "searchProduct": "Buscar producto por código o nombre...",
+        "noProductsFound": "No se encontraron productos"
+    },
+    "filters": {
+        "allProviders": "Todos los proveedores",
+        "allStores": "Todas las ubicaciones",
+        "allStatuses": "Todos los estados"
+    },
+    "messages": {
+        "created": "Compra registrada exitosamente",
+        "updated": "Compra actualizada exitosamente",
+        "deleted": "Compra eliminada exitosamente",
+        "confirmDelete": "¿Está seguro de eliminar esta compra?",
+        "minOneItem": "Debe agregar al menos un producto"
+    }
+}

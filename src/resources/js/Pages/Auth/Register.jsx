@@ -7,6 +7,7 @@ export default function Register() {
     const { t } = useTranslation('auth');
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
+        username: '',
         email: '',
         password: '',
         password_confirmation: '',
@@ -49,10 +50,27 @@ export default function Register() {
 
                         <Form.Group className="mb-3">
                             <Form.Control
+                                type="text"
+                                value={data.username}
+                                onChange={(e) => setData('username', e.target.value)}
+                                autoComplete="username"
+                                isInvalid={!!errors.username}
+                                placeholder={t('usernamePlaceholder')}
+                                className="auth-input"
+                                size="lg"
+                            />
+                            {errors.username && (
+                                <Form.Control.Feedback type="invalid">
+                                    {errors.username}
+                                </Form.Control.Feedback>
+                            )}
+                        </Form.Group>
+
+                        <Form.Group className="mb-3">
+                            <Form.Control
                                 type="email"
                                 value={data.email}
                                 onChange={(e) => setData('email', e.target.value)}
-                                autoComplete="username"
                                 isInvalid={!!errors.email}
                                 placeholder={t('email')}
                                 className="auth-input"

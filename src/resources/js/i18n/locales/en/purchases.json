@@ -1,0 +1,63 @@
+{
+    "title": "Purchases",
+    "subtitle": "Provider purchase management",
+    "single": "Purchase",
+    "newPurchase": "New Purchase",
+    "editPurchase": "Edit Purchase",
+    "fields": {
+        "code": "Code",
+        "invoiceNumber": "Invoice No.",
+        "provider": "Provider",
+        "store": "Store",
+        "purchaseDate": "Purchase Date",
+        "subtotal": "Subtotal",
+        "tax": "Tax",
+        "discount": "Discount",
+        "total": "Total",
+        "observation": "Observation",
+        "status": "Status",
+        "createdBy": "Created by",
+        "createdAt": "Created at"
+    },
+    "placeholders": {
+        "invoiceNumber": "Provider invoice number",
+        "observation": "Additional observations...",
+        "provider": "Select provider...",
+        "store": "Select store..."
+    },
+    "statuses": {
+        "pending": "Pending",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+    },
+    "sections": {
+        "generalInfo": "General Information",
+        "items": "Products",
+        "summary": "Summary"
+    },
+    "items": {
+        "title": "Purchase Products",
+        "product": "Product",
+        "quantity": "Quantity",
+        "unitCost": "Unit Cost",
+        "subtotal": "Subtotal",
+        "addItem": "Add",
+        "removeItem": "Remove",
+        "noItems": "No products added",
+        "selectProduct": "Select product...",
+        "searchProduct": "Search product by code or name...",
+        "noProductsFound": "No products found"
+    },
+    "filters": {
+        "allProviders": "All providers",
+        "allStores": "All stores",
+        "allStatuses": "All statuses"
+    },
+    "messages": {
+        "created": "Purchase created successfully",
+        "updated": "Purchase updated successfully",
+        "deleted": "Purchase deleted successfully",
+        "confirmDelete": "Are you sure you want to delete this purchase?",
+        "minOneItem": "You must add at least one product"
+    }
+}

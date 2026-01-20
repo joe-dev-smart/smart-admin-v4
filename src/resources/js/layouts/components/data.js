@@ -14,6 +14,7 @@ import {
     IconReportAnalytics,
     IconCategory,
     IconTag,
+    IconShoppingBag,
 } from '@tabler/icons-react';
 
 export const userDropdownItems = [
@@ -102,11 +103,16 @@ export const menuItems = [
         url: '/products',
     },
     {
-        key: 'movements',
-        label: 'nav.movements',
+        key: 'purchases',
+        label: 'nav.purchases',
+        icon: IconShoppingBag,
+        url: '/purchases',
+    },
+    {
+        key: 'transfers',
+        label: 'nav.transfers',
         icon: IconArrowsExchange,
-        url: '/movements',
-        disabled: true, // Coming soon
+        url: '/transfers',
     },
     {
         key: 'sales',

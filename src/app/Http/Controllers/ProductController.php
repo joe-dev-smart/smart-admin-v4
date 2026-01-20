@@ -105,6 +105,12 @@ class ProductController extends Controller
             'status' => 'required|in:enabled,disabled',
         ]);
 
+        // Set default values for nullable price fields
+        $validated['sale_price_2'] = $validated['sale_price_2'] ?? 0;
+        $validated['sale_price_3'] = $validated['sale_price_3'] ?? 0;
+        $validated['sale_price_4'] = $validated['sale_price_4'] ?? 0;
+        $validated['minimum_stock'] = $validated['minimum_stock'] ?? 0;
+
         Product::create($validated);
 
         return redirect()->route('products.index')
@@ -160,6 +166,12 @@ class ProductController extends Controller
             'description' => 'nullable|string',
             'status' => 'required|in:enabled,disabled',
         ]);
+
+        // Set default values for nullable price fields
+        $validated['sale_price_2'] = $validated['sale_price_2'] ?? 0;
+        $validated['sale_price_3'] = $validated['sale_price_3'] ?? 0;
+        $validated['sale_price_4'] = $validated['sale_price_4'] ?? 0;
+        $validated['minimum_stock'] = $validated['minimum_stock'] ?? 0;
 
         $product->update($validated);
 

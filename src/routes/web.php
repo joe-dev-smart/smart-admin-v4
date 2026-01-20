@@ -6,18 +6,18 @@ use App\Http\Controllers\ClientController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\ProviderController;
+use App\Http\Controllers\PurchaseController;
 use App\Http\Controllers\StoreController;
+use App\Http\Controllers\TransferController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
 Route::get('/', function () {
-    return Inertia::render('Welcome', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
+    if (auth()->check()) {
+        return redirect()->route('dashboard');
+    }
+    return redirect()->route('login');
 });
 
 Route::get('/dashboard', function () {
@@ -46,6 +46,12 @@ Route::middleware('auth')->group(function () {
 
     // Products (Productos)
     Route::resource('products', ProductController::class);
+
+    // Purchases (Compras)
+    Route::resource('purchases', PurchaseController::class);
+
+    // Transfers (Traslados)
+    Route::resource('transfers', TransferController::class);
 });
 
 require __DIR__.'/auth.php';

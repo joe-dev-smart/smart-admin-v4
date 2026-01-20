@@ -1,0 +1,64 @@
+{
+    "title": "Transfers",
+    "subtitle": "Transfers management between stores",
+    "single": "Transfer",
+    "newTransfer": "New Transfer",
+    "editTransfer": "Edit Transfer",
+    "fields": {
+        "code": "Code",
+        "type": "Type",
+        "fromStore": "From Store",
+        "toStore": "To Store",
+        "transferDate": "Transfer Date",
+        "observation": "Observation",
+        "status": "Status",
+        "createdBy": "Created by",
+        "createdAt": "Created at"
+    },
+    "types": {
+        "add": "Add",
+        "transfer": "Transfer",
+        "remove": "Remove"
+    },
+    "placeholders": {
+        "observation": "Additional observations...",
+        "fromStore": "Select origin store...",
+        "toStore": "Select destination store..."
+    },
+    "statuses": {
+        "pending": "Pending",
+        "in_transit": "In Transit",
+        "completed": "Completed",
+        "cancelled": "Cancelled"
+    },
+    "sections": {
+        "generalInfo": "General Information",
+        "items": "Products"
+    },
+    "items": {
+        "title": "Products to Transfer",
+        "product": "Product",
+        "quantity": "Quantity",
+        "addItem": "Add",
+        "removeItem": "Remove",
+        "noItems": "No products added",
+        "selectProduct": "Select product...",
+        "searchProduct": "Search product by code or name...",
+        "noProductsFound": "No products found"
+    },
+    "filters": {
+        "allStores": "All stores",
+        "allStatuses": "All statuses",
+        "allTypes": "All types",
+        "fromStore": "From store",
+        "toStore": "To store"
+    },
+    "messages": {
+        "created": "Transfer created successfully",
+        "updated": "Transfer updated successfully",
+        "deleted": "Transfer deleted successfully",
+        "confirmDelete": "Are you sure you want to delete this transfer?",
+        "minOneItem": "You must add at least one product",
+        "sameStore": "Origin and destination stores must be different"
+    }
+}

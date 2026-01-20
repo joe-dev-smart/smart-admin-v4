@@ -1,0 +1,34 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class TransferItem extends Model
+{
+    protected $fillable = [
+        'transfer_id',
+        'product_id',
+        'quantity',
+    ];
+
+    protected $casts = [
+        'quantity' => 'integer',
+    ];
+
+    /**
+     * Get the transfer that owns the item.
+     */
+    public function transfer()
+    {
+        return $this->belongsTo(Transfer::class);
+    }
+
+    /**
+     * Get the product for the item.
+     */
+    public function product()
+    {
+        return $this->belongsTo(Product::class);
+    }
+}
