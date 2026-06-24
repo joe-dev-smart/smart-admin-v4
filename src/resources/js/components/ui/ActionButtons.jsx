@@ -1,36 +1,79 @@
 import { Link } from '@inertiajs/react';
-import { Button, ButtonGroup } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import { IconEdit, IconTrash, IconEye } from '@tabler/icons-react';
+import { useTranslation } from 'react-i18next';
 
 /**
- * Reusable action buttons for table rows
+ * Shared action buttons for table rows.
+ *
+ * Standard buttons: View (optional), Edit (optional), Delete (optional).
+ * Pass `children` for page-specific extra buttons — inserted between Edit
+ * and Delete so the destructive action always stays at the far right.
+ *
+ * All buttons use native `title` attributes for tooltips (no Popper, no
+ * layout shift).
+ *
+ * @example
+ * <ActionButtons
+ *   viewRoute={route('users.show', row.id)}
+ *   editRoute={route('users.edit', row.id)}
+ *   onDelete={() => setDeleteModal({ show: true })}
+ * >
+ *   <Button title="Force logout" variant="outline-warning" size="sm" className="btn-icon">
+ *     <IconLogout size={16} />
+ *   </Button>
+ * </ActionButtons>
  */
 const ActionButtons = ({
-    editRoute,
-    viewRoute,
-    onDelete,
-    showView = false,
-    showEdit = true,
+    viewRoute   = null,
+    editRoute   = null,
+    onDelete    = null,
+
+    viewTitle   = null,
+    editTitle   = null,
+    deleteTitle = null,
+
+    showView   = true,
+    showEdit   = true,
     showDelete = true,
+
+    children,
 }) => {
+    const { t } = useTranslation('common');
+
     return (
-        <ButtonGroup size="sm">
+        <div className="d-flex gap-1 flex-wrap">
             {showView && viewRoute && (
                 <Link href={viewRoute}>
-                    <Button variant="outline-info" size="sm" className="btn-icon">
+                    <Button
+                        title={viewTitle ?? t('actions.view')}
+                        variant="outline-info"
+                        size="sm"
+                        className="btn-icon"
+                    >
                         <IconEye size={16} />
                     </Button>
                 </Link>
             )}
+
             {showEdit && editRoute && (
                 <Link href={editRoute}>
-                    <Button variant="outline-primary" size="sm" className="btn-icon">
+                    <Button
+                        title={editTitle ?? t('actions.edit')}
+                        variant="outline-primary"
+                        size="sm"
+                        className="btn-icon"
+                    >
                         <IconEdit size={16} />
                     </Button>
                 </Link>
             )}
+
+            {children}
+
             {showDelete && onDelete && (
                 <Button
+                    title={deleteTitle ?? t('actions.delete')}
                     variant="outline-danger"
                     size="sm"
                     className="btn-icon"
@@ -39,7 +82,7 @@ const ActionButtons = ({
                     <IconTrash size={16} />
                 </Button>
             )}
-        </ButtonGroup>
+        </div>
     );
 };
 

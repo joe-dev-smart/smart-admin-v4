@@ -2,54 +2,44 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movement;
 use App\Models\Product;
 use App\Models\Provider;
 use App\Models\Purchase;
 use App\Models\PurchaseItem;
+use App\Models\Stock;
 use App\Models\Store;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class PurchaseController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $query = Purchase::with(['provider', 'store', 'user']);
 
-        // Search filter
         if ($request->filled('search')) {
             $query->search($request->search);
         }
-
-        // Status filter
         if ($request->filled('status') && $request->status !== 'all') {
             $query->where('status', $request->status);
         }
-
-        // Provider filter
         if ($request->filled('provider_id') && $request->provider_id !== 'all') {
             $query->where('provider_id', $request->provider_id);
         }
-
-        // Store filter
         if ($request->filled('store_id') && $request->store_id !== 'all') {
             $query->where('store_id', $request->store_id);
         }
 
-        // Sorting
         $sortField = $request->get('sort', 'created_at');
         $sortDirection = $request->get('direction', 'desc');
         $query->orderBy($sortField, $sortDirection);
 
-        // Pagination
         $perPage = $request->get('per_page', 10);
         $purchases = $query->paginate($perPage)->withQueryString();
 
-        // Get providers and stores for filters
         $providers = Provider::enabled()->orderBy('name')->get();
         $stores = Store::enabled()->orderBy('name')->get();
 
@@ -69,9 +59,6 @@ class PurchaseController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $providers = Provider::enabled()->orderBy('name')->get();
@@ -85,9 +72,6 @@ class PurchaseController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
         $validated = $request->validate([
@@ -105,22 +89,20 @@ class PurchaseController extends Controller
             'items.*.unit_cost' => 'required|numeric|min:0',
         ]);
 
-        DB::transaction(function () use ($validated, $request) {
-            // Calculate totals
-            $subtotal = 0;
-            foreach ($validated['items'] as $item) {
-                $subtotal += $item['quantity'] * $item['unit_cost'];
-            }
+        /** @var \App\Models\User $currentUser */
+        $currentUser = Auth::user();
+        $userId = $currentUser->id;
 
+        DB::transaction(function () use ($validated, $userId) {
+            $subtotal = array_reduce($validated['items'], fn($sum, $item) => $sum + $item['quantity'] * $item['unit_cost'], 0);
             $tax = $validated['tax'] ?? 0;
             $discount = $validated['discount'] ?? 0;
             $total = $subtotal + $tax - $discount;
 
-            // Create purchase with auto-generated code
             $purchase = Purchase::create([
                 'provider_id' => $validated['provider_id'],
                 'store_id' => $validated['store_id'],
-                'user_id' => auth()->id(),
+                'user_id' => $userId,
                 'code' => Purchase::generateCode(),
                 'invoice_number' => $validated['invoice_number'],
                 'purchase_date' => $validated['purchase_date'],
@@ -132,7 +114,6 @@ class PurchaseController extends Controller
                 'status' => $validated['status'],
             ]);
 
-            // Create purchase items
             foreach ($validated['items'] as $item) {
                 PurchaseItem::create([
                     'purchase_id' => $purchase->id,
@@ -142,15 +123,16 @@ class PurchaseController extends Controller
                     'subtotal' => $item['quantity'] * $item['unit_cost'],
                 ]);
             }
+
+            if ($validated['status'] === 'completed') {
+                $this->applyStockAndMovements($purchase);
+            }
         });
 
         return redirect()->route('purchases.index')
             ->with('success', 'purchases.messages.created');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Purchase $purchase)
     {
         return Inertia::render('Purchases/Show', [
@@ -158,9 +140,6 @@ class PurchaseController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Purchase $purchase)
     {
         $providers = Provider::enabled()->orderBy('name')->get();
@@ -175,9 +154,6 @@ class PurchaseController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Purchase $purchase)
     {
         $validated = $request->validate([
@@ -196,17 +172,13 @@ class PurchaseController extends Controller
         ]);
 
         DB::transaction(function () use ($validated, $purchase) {
-            // Calculate totals
-            $subtotal = 0;
-            foreach ($validated['items'] as $item) {
-                $subtotal += $item['quantity'] * $item['unit_cost'];
-            }
+            $previousStatus = $purchase->status;
 
+            $subtotal = array_reduce($validated['items'], fn($sum, $item) => $sum + $item['quantity'] * $item['unit_cost'], 0);
             $tax = $validated['tax'] ?? 0;
             $discount = $validated['discount'] ?? 0;
             $total = $subtotal + $tax - $discount;
 
-            // Update purchase
             $purchase->update([
                 'provider_id' => $validated['provider_id'],
                 'store_id' => $validated['store_id'],
@@ -220,7 +192,6 @@ class PurchaseController extends Controller
                 'status' => $validated['status'],
             ]);
 
-            // Delete old items and create new ones
             $purchase->items()->delete();
 
             foreach ($validated['items'] as $item) {
@@ -232,20 +203,51 @@ class PurchaseController extends Controller
                     'subtotal' => $item['quantity'] * $item['unit_cost'],
                 ]);
             }
+
+            // Apply stock only when transitioning to "completed" for the first time
+            if ($previousStatus !== 'completed' && $validated['status'] === 'completed') {
+                $purchase->refresh();
+                $this->applyStockAndMovements($purchase);
+            }
         });
 
         return redirect()->route('purchases.index')
             ->with('success', 'purchases.messages.updated');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Purchase $purchase)
     {
         $purchase->delete();
 
         return redirect()->route('purchases.index')
             ->with('success', 'purchases.messages.deleted');
+    }
+
+    /**
+     * Create stock entries and movement records for a completed purchase.
+     */
+    private function applyStockAndMovements(Purchase $purchase): void
+    {
+        $purchase->load('items');
+
+        foreach ($purchase->items as $item) {
+            $stock = Stock::addQuantity(
+                productId: $item->product_id,
+                storeId: $purchase->store_id,
+                quantity: $item->quantity,
+            );
+
+            Movement::create([
+                'product_id' => $item->product_id,
+                'store_id' => $purchase->store_id,
+                'user_id' => $purchase->user_id,
+                'stock_id' => $stock->id,
+                'type' => 'entry',
+                'quantity' => $item->quantity,
+                'system_description' => "Entry from purchase #{$purchase->code}",
+                'movable_type' => Purchase::class,
+                'movable_id' => $purchase->id,
+            ]);
+        }
     }
 }

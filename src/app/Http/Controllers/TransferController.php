@@ -2,58 +2,45 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Movement;
 use App\Models\Product;
+use App\Models\Stock;
 use App\Models\Store;
 use App\Models\Transfer;
 use App\Models\TransferItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Inertia\Inertia;
 
 class TransferController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index(Request $request)
     {
         $query = Transfer::with(['fromStore', 'toStore', 'user']);
 
-        // Search filter
         if ($request->filled('search')) {
             $query->search($request->search);
         }
-
-        // Status filter
         if ($request->filled('status') && $request->status !== 'all') {
             $query->where('status', $request->status);
         }
-
-        // Type filter
         if ($request->filled('type') && $request->type !== 'all') {
             $query->where('type', $request->type);
         }
-
-        // From store filter
         if ($request->filled('from_store_id') && $request->from_store_id !== 'all') {
             $query->where('from_store_id', $request->from_store_id);
         }
-
-        // To store filter
         if ($request->filled('to_store_id') && $request->to_store_id !== 'all') {
             $query->where('to_store_id', $request->to_store_id);
         }
 
-        // Sorting
         $sortField = $request->get('sort', 'created_at');
         $sortDirection = $request->get('direction', 'desc');
         $query->orderBy($sortField, $sortDirection);
 
-        // Pagination
         $perPage = $request->get('per_page', 10);
         $transfers = $query->paginate($perPage)->withQueryString();
-
-        // Get stores for filters
         $stores = Store::enabled()->orderBy('name')->get();
 
         return Inertia::render('Transfers/Index', [
@@ -72,9 +59,6 @@ class TransferController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         $stores = Store::enabled()->orderBy('name')->get();
@@ -86,49 +70,26 @@ class TransferController extends Controller
         ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        $rules = [
-            'type' => 'required|in:add,transfer,remove',
-            'transfer_date' => 'required|date',
-            'observation' => 'nullable|string',
-            'status' => 'required|in:pending,in_transit,completed,cancelled',
-            'items' => 'required|array|min:1',
-            'items.*.product_id' => 'required|exists:products,id',
-            'items.*.quantity' => 'required|integer|min:1',
-        ];
-
-        // Add conditional validation based on type
-        if ($request->type === 'transfer') {
-            $rules['from_store_id'] = 'required|exists:stores,id|different:to_store_id';
-            $rules['to_store_id'] = 'required|exists:stores,id';
-        } elseif ($request->type === 'add') {
-            $rules['to_store_id'] = 'required|exists:stores,id';
-            $rules['from_store_id'] = 'nullable';
-        } elseif ($request->type === 'remove') {
-            $rules['from_store_id'] = 'required|exists:stores,id';
-            $rules['to_store_id'] = 'nullable';
-        }
-
+        $rules = $this->validationRules($request->type);
         $validated = $request->validate($rules);
+        /** @var \App\Models\User $currentUser */
+        $currentUser = Auth::user();
+        $userId = $currentUser->id;
 
-        DB::transaction(function () use ($validated) {
-            // Create transfer with auto-generated code
+        DB::transaction(function () use ($validated, $userId) {
             $transfer = Transfer::create([
                 'from_store_id' => $validated['from_store_id'] ?? null,
                 'to_store_id' => $validated['to_store_id'] ?? null,
-                'user_id' => auth()->id(),
+                'user_id' => $userId,
                 'type' => $validated['type'],
                 'code' => Transfer::generateCode(),
                 'transfer_date' => $validated['transfer_date'],
-                'observation' => $validated['observation'],
+                'observation' => $validated['observation'] ?? null,
                 'status' => $validated['status'],
             ]);
 
-            // Create transfer items
             foreach ($validated['items'] as $item) {
                 TransferItem::create([
                     'transfer_id' => $transfer->id,
@@ -136,15 +97,16 @@ class TransferController extends Controller
                     'quantity' => $item['quantity'],
                 ]);
             }
+
+            if ($validated['status'] === 'completed') {
+                $this->applyStockAndMovements($transfer);
+            }
         });
 
         return redirect()->route('transfers.index')
             ->with('success', 'transfers.messages.created');
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Transfer $transfer)
     {
         return Inertia::render('Transfers/Show', [
@@ -152,9 +114,6 @@ class TransferController extends Controller
         ]);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Transfer $transfer)
     {
         $stores = Store::enabled()->orderBy('name')->get();
@@ -167,10 +126,54 @@ class TransferController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Transfer $transfer)
+    {
+        $rules = $this->validationRules($request->type);
+        $validated = $request->validate($rules);
+        $previousStatus = $transfer->status;
+
+        DB::transaction(function () use ($validated, $transfer, $previousStatus) {
+            $transfer->update([
+                'from_store_id' => $validated['from_store_id'] ?? null,
+                'to_store_id' => $validated['to_store_id'] ?? null,
+                'type' => $validated['type'],
+                'transfer_date' => $validated['transfer_date'],
+                'observation' => $validated['observation'] ?? null,
+                'status' => $validated['status'],
+            ]);
+
+            $transfer->items()->delete();
+
+            foreach ($validated['items'] as $item) {
+                TransferItem::create([
+                    'transfer_id' => $transfer->id,
+                    'product_id' => $item['product_id'],
+                    'quantity' => $item['quantity'],
+                ]);
+            }
+
+            if ($previousStatus !== 'completed' && $validated['status'] === 'completed') {
+                $transfer->refresh();
+                $this->applyStockAndMovements($transfer);
+            }
+        });
+
+        return redirect()->route('transfers.index')
+            ->with('success', 'transfers.messages.updated');
+    }
+
+    public function destroy(Transfer $transfer)
+    {
+        $transfer->delete();
+
+        return redirect()->route('transfers.index')
+            ->with('success', 'transfers.messages.deleted');
+    }
+
+    /**
+     * Build validation rules based on transfer type.
+     */
+    private function validationRules(string $type): array
     {
         $rules = [
             'type' => 'required|in:add,transfer,remove',
@@ -182,55 +185,102 @@ class TransferController extends Controller
             'items.*.quantity' => 'required|integer|min:1',
         ];
 
-        // Add conditional validation based on type
-        if ($request->type === 'transfer') {
+        if ($type === 'transfer') {
             $rules['from_store_id'] = 'required|exists:stores,id|different:to_store_id';
             $rules['to_store_id'] = 'required|exists:stores,id';
-        } elseif ($request->type === 'add') {
+        } elseif ($type === 'add') {
             $rules['to_store_id'] = 'required|exists:stores,id';
             $rules['from_store_id'] = 'nullable';
-        } elseif ($request->type === 'remove') {
+        } elseif ($type === 'remove') {
             $rules['from_store_id'] = 'required|exists:stores,id';
             $rules['to_store_id'] = 'nullable';
         }
 
-        $validated = $request->validate($rules);
-
-        DB::transaction(function () use ($validated, $transfer) {
-            // Update transfer
-            $transfer->update([
-                'from_store_id' => $validated['from_store_id'] ?? null,
-                'to_store_id' => $validated['to_store_id'] ?? null,
-                'type' => $validated['type'],
-                'transfer_date' => $validated['transfer_date'],
-                'observation' => $validated['observation'],
-                'status' => $validated['status'],
-            ]);
-
-            // Delete old items and create new ones
-            $transfer->items()->delete();
-
-            foreach ($validated['items'] as $item) {
-                TransferItem::create([
-                    'transfer_id' => $transfer->id,
-                    'product_id' => $item['product_id'],
-                    'quantity' => $item['quantity'],
-                ]);
-            }
-        });
-
-        return redirect()->route('transfers.index')
-            ->with('success', 'transfers.messages.updated');
+        return $rules;
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Apply stock changes and create movement records for a completed transfer.
      */
-    public function destroy(Transfer $transfer)
+    private function applyStockAndMovements(Transfer $transfer): void
     {
-        $transfer->delete();
+        $transfer->load('items');
+        $userId = $transfer->user_id;
 
-        return redirect()->route('transfers.index')
-            ->with('success', 'transfers.messages.deleted');
+        foreach ($transfer->items as $item) {
+            match ($transfer->type) {
+                'add' => $this->applyAdd($transfer, $item, $userId),
+                'remove' => $this->applyRemove($transfer, $item, $userId),
+                'transfer' => $this->applyTransfer($transfer, $item, $userId),
+            };
+        }
+    }
+
+    private function applyAdd(Transfer $transfer, TransferItem $item, int $userId): void
+    {
+        $stock = Stock::addQuantity($item->product_id, $transfer->to_store_id, $item->quantity);
+
+        Movement::create([
+            'product_id' => $item->product_id,
+            'store_id' => $transfer->to_store_id,
+            'user_id' => $userId,
+            'stock_id' => $stock->id,
+            'type' => 'entry',
+            'quantity' => $item->quantity,
+            'system_description' => "Stock addition via transfer #{$transfer->code}",
+            'movable_type' => Transfer::class,
+            'movable_id' => $transfer->id,
+        ]);
+    }
+
+    private function applyRemove(Transfer $transfer, TransferItem $item, int $userId): void
+    {
+        $stock = Stock::removeQuantity($item->product_id, $transfer->from_store_id, $item->quantity);
+
+        Movement::create([
+            'product_id' => $item->product_id,
+            'store_id' => $transfer->from_store_id,
+            'user_id' => $userId,
+            'stock_id' => $stock->id,
+            'type' => 'remove',
+            'quantity' => $item->quantity,
+            'system_description' => "Stock removal via transfer #{$transfer->code}",
+            'movable_type' => Transfer::class,
+            'movable_id' => $transfer->id,
+        ]);
+    }
+
+    private function applyTransfer(Transfer $transfer, TransferItem $item, int $userId): void
+    {
+        $stockOut = Stock::removeQuantity($item->product_id, $transfer->from_store_id, $item->quantity);
+        $stockIn = Stock::addQuantity($item->product_id, $transfer->to_store_id, $item->quantity);
+
+        $movOut = Movement::create([
+            'product_id' => $item->product_id,
+            'store_id' => $transfer->from_store_id,
+            'user_id' => $userId,
+            'stock_id' => $stockOut->id,
+            'type' => 'out_transfer',
+            'quantity' => $item->quantity,
+            'system_description' => "Transfer out to store #{$transfer->to_store_id} via #{$transfer->code}",
+            'movable_type' => Transfer::class,
+            'movable_id' => $transfer->id,
+        ]);
+
+        $movIn = Movement::create([
+            'product_id' => $item->product_id,
+            'store_id' => $transfer->to_store_id,
+            'user_id' => $userId,
+            'stock_id' => $stockIn->id,
+            'type' => 'entry_transfer',
+            'quantity' => $item->quantity,
+            'system_description' => "Transfer in from store #{$transfer->from_store_id} via #{$transfer->code}",
+            'transfer_movement_id' => $movOut->id,
+            'movable_type' => Transfer::class,
+            'movable_id' => $transfer->id,
+        ]);
+
+        // Back-link the out movement to its paired in movement
+        $movOut->update(['transfer_movement_id' => $movIn->id]);
     }
 }

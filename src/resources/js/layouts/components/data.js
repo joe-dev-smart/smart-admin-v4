@@ -15,6 +15,10 @@ import {
     IconCategory,
     IconTag,
     IconShoppingBag,
+    IconShield,
+    IconUserCog,
+    IconKey,
+    IconAdjustments,
 } from '@tabler/icons-react';
 
 export const userDropdownItems = [
@@ -46,6 +50,16 @@ export const userDropdownItems = [
         isDivider: true,
     },
     {
+        label: 'nav.settings',
+        icon: IconAdjustments,
+        url: '/settings',
+        superAdminOnly: true,
+    },
+    {
+        isDivider: true,
+        superAdminOnly: true,
+    },
+    {
         label: 'Log Out',
         icon: IconLogout2,
         url: '/logout',
@@ -71,62 +85,90 @@ export const menuItems = [
         label: 'nav.stores',
         icon: IconBuildingStore,
         url: '/stores',
+        permission: 'stores.view',
     },
     {
         key: 'clients',
         label: 'nav.clients',
         icon: IconUsers,
         url: '/clients',
+        permission: 'clients.view',
     },
     {
         key: 'providers',
         label: 'nav.providers',
         icon: IconTruck,
         url: '/providers',
+        permission: 'providers.view',
     },
     {
         key: 'categories',
         label: 'nav.categories',
         icon: IconCategory,
         url: '/categories',
+        permission: 'categories.view',
     },
     {
         key: 'brands',
         label: 'nav.brands',
         icon: IconTag,
         url: '/brands',
+        permission: 'brands.view',
     },
     {
         key: 'products',
         label: 'nav.products',
         icon: IconPackage,
         url: '/products',
+        permission: 'products.view',
     },
     {
         key: 'purchases',
         label: 'nav.purchases',
         icon: IconShoppingBag,
         url: '/purchases',
+        permission: 'purchases.view',
     },
     {
         key: 'transfers',
         label: 'nav.transfers',
         icon: IconArrowsExchange,
         url: '/transfers',
+        permission: 'transfers.view',
     },
     {
         key: 'sales',
         label: 'nav.sales',
         icon: IconShoppingCart,
         url: '/sales',
-        disabled: true, // Coming soon
+        permission: 'sales.view',
     },
     {
         key: 'reports',
         label: 'nav.reports',
         icon: IconReportAnalytics,
         url: '/reports',
-        disabled: true, // Coming soon
+        permission: 'reports.view',
+    },
+    {
+        key: 'security',
+        label: 'nav.security',
+        isTitle: true,
+        superAdminOnly: true,
+    },
+    {
+        key: 'roles',
+        label: 'nav.roles',
+        icon: IconKey,
+        url: '/roles',
+        superAdminOnly: true,
+    },
+    {
+        key: 'users',
+        label: 'nav.users',
+        icon: IconUserCog,
+        url: '/users',
+        superAdminOnly: true,
     },
 ];
 

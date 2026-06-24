@@ -70,6 +70,7 @@ export default function StoresIndex({ stores, filters }) {
             width: '120px',
             render: (row) => (
                 <ActionButtons
+                    viewRoute={route('stores.show', row.id)}
                     editRoute={route('stores.edit', row.id)}
                     onDelete={() => setDeleteModal({ show: true, store: row })}
                 />

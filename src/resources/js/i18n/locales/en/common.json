@@ -83,6 +83,9 @@
         "sales": "Sales",
         "reports": "Reports",
         "settings": "Settings",
+        "security": "Security",
+        "roles": "Roles",
+        "users": "Users",
         "logout": "Logout"
     },
     "company": {
@@ -92,5 +95,32 @@
         "tagline": "Your intelligent business management system",
         "description": "We simplify your business management with powerful and intuitive tools for inventory control, sales, reports, and much more.",
         "copyright": "All rights reserved"
+    },
+    "dashboard": {
+        "welcome": "Welcome, {{name}}",
+        "activeProducts": "Active products",
+        "lowStock": "Low stock",
+        "todaySales": "Today's sales",
+        "todayRevenue": "Today's revenue",
+        "todayPurchases": "Today's purchases",
+        "todayPurchasesCost": "Purchase cost today",
+        "viewMore": "View more",
+        "recentSales": "Recent sales",
+        "viewAll": "View all",
+        "lowStockAlerts": "Low stock alerts",
+        "viewReport": "View report",
+        "noRecentSales": "No recent sales",
+        "stockOk": "All products have sufficient stock",
+        "revenueChart": "Revenue — last 30 days",
+        "topSellers": "Top 5 best sellers",
+        "product": "Product",
+        "units": "Units",
+        "revenue": "Revenue",
+        "code": "Code",
+        "client": "Client",
+        "store": "Store",
+        "total": "Total",
+        "qty": "Qty.",
+        "min": "Min."
     }
 }

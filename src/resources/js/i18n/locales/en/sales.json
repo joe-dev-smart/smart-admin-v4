@@ -1,0 +1,81 @@
+{
+    "title": "Sales",
+    "subtitle": "Sales management",
+    "single": "Sale",
+    "newSale": "New Sale",
+    "editSale": "Edit Sale",
+    "fields": {
+        "code": "Code",
+        "saleDate": "Sale Date",
+        "client": "Client",
+        "store": "Store",
+        "payment": "Payment Method",
+        "paid": "Paid",
+        "remaining": "Remaining",
+        "subtotal": "Subtotal",
+        "discount": "Discount",
+        "total": "Total",
+        "observation": "Observation",
+        "status": "Status",
+        "hasDebt": "Has Debt",
+        "createdBy": "Created by"
+    },
+    "placeholders": {
+        "store": "Select store...",
+        "client": "Select client...",
+        "observation": "Additional observations..."
+    },
+    "statuses": {
+        "valid": "Valid",
+        "annulled": "Annulled",
+        "draft": "Draft"
+    },
+    "payments": {
+        "cash": "Cash",
+        "bank_deposit": "Bank Deposit",
+        "card": "Card",
+        "qr_payment": "QR Payment",
+        "check": "Check",
+        "payment_plan": "Payment Plan"
+    },
+    "priceTypes": {
+        "price1": "General Price",
+        "price2": "Public Sector",
+        "price3": "Private Sector",
+        "price4": "Wholesale"
+    },
+    "sections": {
+        "generalInfo": "General Information",
+        "items": "Products",
+        "summary": "Summary",
+        "payment": "Payment"
+    },
+    "items": {
+        "product": "Product",
+        "quantity": "Qty",
+        "price": "Price",
+        "subtotal": "Subtotal",
+        "detail": "Detail",
+        "noItems": "No products added. Search and add products.",
+        "searchProduct": "Search product by code or name..."
+    },
+    "actions": {
+        "annul": "Annul"
+    },
+    "annul": {
+        "confirmTitle": "Annul Sale",
+        "confirmMessage": "Are you sure you want to annul sale {{code}}? This will return stock to inventory."
+    },
+    "filters": {
+        "allStores": "All stores",
+        "allPayments": "All payments"
+    },
+    "messages": {
+        "created": "Sale created successfully",
+        "updated": "Sale updated successfully",
+        "deleted": "Sale deleted successfully",
+        "annulled": "Sale annulled and stock returned",
+        "confirmDelete": "Are you sure you want to delete sale {{code}}?",
+        "debtWarning": "Client has a pending balance of {{amount}}"
+    }
+}

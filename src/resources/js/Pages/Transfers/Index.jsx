@@ -91,6 +91,7 @@ export default function TransfersIndex({ transfers, stores, filters }) {
             width: '120px',
             render: (row) => (
                 <ActionButtons
+                    viewRoute={route('transfers.show', row.id)}
                     editRoute={route('transfers.edit', row.id)}
                     onDelete={() => setDeleteModal({ show: true, transfer: row })}
                 />

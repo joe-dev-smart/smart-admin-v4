@@ -1,0 +1,50 @@
+{
+    "title": "Roles",
+    "subtitle": "Gestiona los roles y permisos del sistema",
+    "newRole": "Nuevo Rol",
+    "editRole": "Editar Rol",
+    "systemRole": "Sistema",
+    "systemRoleWarning": "Este es un rol del sistema. El nombre no puede ser modificado.",
+    "superAdminAllPermissions": "El rol Super Admin tiene acceso a todos los permisos del sistema.",
+    "noPermissions": "No hay permisos configurados en el sistema.",
+    "redirectRouteHelp": "Página a la que será redirigido el usuario después de iniciar sesión.",
+    "fields": {
+        "name": "Nombre",
+        "description": "Descripción",
+        "usersCount": "Usuarios",
+        "redirectRoute": "Página de Inicio"
+    },
+    "placeholders": {
+        "name": "Nombre del rol...",
+        "description": "Descripción del rol..."
+    },
+    "sections": {
+        "basicInfo": "Información Básica",
+        "permissions": "Permisos"
+    },
+    "modules": {
+        "stores": "Ubicaciones",
+        "clients": "Clientes",
+        "providers": "Proveedores",
+        "categories": "Categorías",
+        "brands": "Marcas",
+        "products": "Productos",
+        "purchases": "Compras",
+        "transfers": "Transferencias",
+        "users": "Usuarios",
+        "roles": "Roles",
+        "reports": "Reportes"
+    },
+    "actions": {
+        "view": "Ver",
+        "create": "Crear",
+        "edit": "Editar",
+        "delete": "Eliminar"
+    },
+    "messages": {
+        "created": "Rol creado exitosamente",
+        "updated": "Rol actualizado exitosamente",
+        "deleted": "Rol eliminado exitosamente",
+        "confirmDelete": "¿Está seguro de eliminar el rol \"{{name}}\"?"
+    }
+}

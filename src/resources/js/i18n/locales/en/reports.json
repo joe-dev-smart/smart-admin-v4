@@ -1,0 +1,100 @@
+{
+    "title": "Reports",
+    "subtitle": "Inventory, movement, and sales reports",
+    "stock": {
+        "title": "Stock Report",
+        "description": "Current inventory levels by product and store",
+        "product": "Product",
+        "category": "Category",
+        "store": "Store",
+        "quantity": "Quantity",
+        "minimumStock": "Min. Stock",
+        "showLowStockOnly": "Low stock only"
+    },
+    "movements": {
+        "title": "Movements Report",
+        "description": "Inventory movement history with filters by store, type and date",
+        "date": "Date",
+        "product": "Product",
+        "store": "Store",
+        "type": "Type",
+        "quantity": "Quantity",
+        "user": "User",
+        "description": "Description",
+        "types": {
+            "entry": "Entry",
+            "entry_transfer": "Transfer In",
+            "sale_return": "Sale Return",
+            "remove": "Removal",
+            "out_transfer": "Transfer Out",
+            "sale": "Sale"
+        }
+    },
+    "sales": {
+        "title": "Sales Report",
+        "description": "Sales history with totals and filters by date, store and status",
+        "totalSales": "Total Sales"
+    },
+    "purchases": {
+        "title": "Purchases Report",
+        "description": "Procurement history by provider, store and date range with totals",
+        "totalOrders": "Total Orders",
+        "itemsCount": "Items"
+    },
+    "bestSellers": {
+        "title": "Best-Selling Products",
+        "description": "Products ranked by units sold and revenue generated — use for reorder decisions",
+        "unitsSold": "Units Sold",
+        "salesCount": "# Sales",
+        "revenue": "Revenue",
+        "avgPrice": "Avg. Price",
+        "totalUnitsSold": "Total Units Sold",
+        "totalRevenue": "Total Revenue",
+        "sortByRevenue": "Sort by revenue",
+        "sortByUnits": "Sort by units",
+        "sortBySales": "Sort by sales count"
+    },
+    "debts": {
+        "title": "Client Debts",
+        "description": "Pending balances from partial-payment sales — track cash flow and follow up with clients",
+        "outstanding": "Outstanding",
+        "clientsWithDebt": "Clients with Debt",
+        "totalPending": "Total Pending",
+        "pendingSales": "Pending Sales",
+        "byClientTitle": "Summary by Client"
+    },
+    "inventoryValue": {
+        "title": "Inventory Valuation",
+        "description": "Current stock × sale price — estimate your total inventory asset value",
+        "unitPrice": "Unit Price",
+        "estimatedValue": "Est. Value",
+        "totalUnits": "Total Units in Stock",
+        "totalValue": "Estimated Total Value",
+        "basedOnPrice1": "Based on General Price (Price 1)"
+    },
+    "dailySummary": {
+        "title": "Daily Sales Summary",
+        "description": "Revenue grouped by day — spot trends, peaks and slow periods at a glance",
+        "date": "Date",
+        "salesCount": "Sales",
+        "revenue": "Revenue",
+        "collected": "Collected",
+        "outstanding": "Outstanding",
+        "chart": "Bar",
+        "bestDay": "Best day",
+        "totalSales": "Total Sales",
+        "totalRevenue": "Total Revenue",
+        "totalCollected": "Total Collected",
+        "totalOutstanding": "Total Outstanding",
+        "dailyBreakdown": "Daily Breakdown"
+    },
+    "filters": {
+        "allStores": "All stores",
+        "allTypes": "All types",
+        "allProviders": "All providers",
+        "allCategories": "All categories",
+        "allClients": "All clients",
+        "dateFrom": "From date",
+        "dateTo": "To date"
+    }
+}

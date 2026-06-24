@@ -48,6 +48,7 @@ export default function BrandsIndex({ brands, filters }) {
             width: '120px',
             render: (row) => (
                 <ActionButtons
+                    viewRoute={route('brands.show', row.id)}
                     editRoute={route('brands.edit', row.id)}
                     onDelete={() => setDeleteModal({ show: true, brand: row })}
                 />

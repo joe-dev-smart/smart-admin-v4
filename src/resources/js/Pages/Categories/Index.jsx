@@ -57,6 +57,7 @@ export default function CategoriesIndex({ categories, filters }) {
             width: '120px',
             render: (row) => (
                 <ActionButtons
+                    viewRoute={route('categories.show', row.id)}
                     editRoute={route('categories.edit', row.id)}
                     onDelete={() => setDeleteModal({ show: true, category: row })}
                 />

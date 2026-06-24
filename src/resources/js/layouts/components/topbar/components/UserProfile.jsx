@@ -2,15 +2,21 @@ import { userDropdownItems } from '@/layouts/components/data';
 import { Image } from 'react-bootstrap';
 import { Link, usePage } from '@inertiajs/react';
 import { Fragment } from 'react';
+import { useTranslation } from 'react-i18next';
 import { Dropdown, DropdownDivider, DropdownItem, DropdownMenu, DropdownToggle } from 'react-bootstrap';
 import { TbChevronDown } from 'react-icons/tb';
 
-// User avatars from public folder
 const usersPath = '/images/users';
 
 const UserProfile = () => {
     const { auth } = usePage().props;
+    const { t } = useTranslation('common');
     const user = auth?.user;
+    const isSuperAdmin = user?.is_super_admin ?? false;
+
+    const visibleItems = userDropdownItems.filter(
+        item => !item.superAdminOnly || isSuperAdmin
+    );
 
     return (
         <div className="topbar-item nav-user">
@@ -29,11 +35,11 @@ const UserProfile = () => {
                     </div>
                 </DropdownToggle>
                 <DropdownMenu className="dropdown-menu-end">
-                    {userDropdownItems.map((item, idx) => (
+                    {visibleItems.map((item, idx) => (
                         <Fragment key={idx}>
                             {item.isHeader ? (
                                 <div className="dropdown-header noti-title">
-                                    <h6 className="text-overflow m-0">{item.label}</h6>
+                                    <h6 className="text-overflow m-0">{t(item.label, item.label)}</h6>
                                 </div>
                             ) : item.isDivider ? (
                                 <DropdownDivider />
@@ -45,7 +51,7 @@ const UserProfile = () => {
                                     className={item.class}
                                 >
                                     {item.icon && <item.icon className="me-2 fs-17 align-middle" />}
-                                    <span className="align-middle">{item.label}</span>
+                                    <span className="align-middle">{t(item.label, item.label)}</span>
                                 </DropdownItem>
                             )}
                         </Fragment>

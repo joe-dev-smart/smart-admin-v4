@@ -71,6 +71,7 @@ export default function ProvidersIndex({ providers, filters }) {
             width: '120px',
             render: (row) => (
                 <ActionButtons
+                    viewRoute={route('providers.show', row.id)}
                     editRoute={route('providers.edit', row.id)}
                     onDelete={() => setDeleteModal({ show: true, provider: row })}
                 />

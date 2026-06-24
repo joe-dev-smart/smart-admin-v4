@@ -83,6 +83,9 @@
         "sales": "Ventas",
         "reports": "Reportes",
         "settings": "Configuración",
+        "security": "Seguridad",
+        "roles": "Roles",
+        "users": "Usuarios",
         "logout": "Cerrar sesión"
     },
     "company": {
@@ -92,5 +95,32 @@
         "tagline": "Tu sistema inteligente de gestión empresarial",
         "description": "Simplificamos la gestión de tu negocio con herramientas poderosas e intuitivas para control de inventario, ventas, reportes y mucho más.",
         "copyright": "Todos los derechos reservados"
+    },
+    "dashboard": {
+        "welcome": "Bienvenido, {{name}}",
+        "activeProducts": "Productos activos",
+        "lowStock": "Stock bajo",
+        "todaySales": "Ventas hoy",
+        "todayRevenue": "Ingresos hoy",
+        "todayPurchases": "Compras hoy",
+        "todayPurchasesCost": "Costo compras hoy",
+        "viewMore": "Ver más",
+        "recentSales": "Ventas recientes",
+        "viewAll": "Ver todas",
+        "lowStockAlerts": "Alertas de stock bajo",
+        "viewReport": "Ver reporte",
+        "noRecentSales": "No hay ventas recientes",
+        "stockOk": "✓ Todos los productos tienen stock suficiente",
+        "revenueChart": "Ingresos — últimos 30 días",
+        "topSellers": "Top 5 más vendidos",
+        "product": "Producto",
+        "units": "Uds.",
+        "revenue": "Total",
+        "code": "Código",
+        "client": "Cliente",
+        "store": "Tienda",
+        "total": "Total",
+        "qty": "Cant.",
+        "min": "Mín."
     }
 }

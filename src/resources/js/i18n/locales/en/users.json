@@ -1,0 +1,81 @@
+{
+    "title": "Users",
+    "subtitle": "Manage system users",
+    "newUser": "New User",
+    "editUser": "Edit User",
+    "viewUser": "User Information",
+    "storesAssigned": "stores",
+    "selectAllStores": "Select all",
+    "noStores": "No stores configured in the system.",
+    "editingOwnAccount": "You are editing your own account.",
+    "cannotChangeOwnRole": "You cannot change your own role.",
+    "cannotDeactivateOwnAccount": "You cannot deactivate your own account.",
+    "passwordChangeHint": "Leave password fields empty if you don't want to change it.",
+    "fields": {
+        "name": "Name",
+        "username": "Username",
+        "email": "Email",
+        "password": "Password",
+        "newPassword": "New Password",
+        "passwordConfirmation": "Confirm Password",
+        "role": "Role",
+        "stores": "Stores",
+        "status": "Status",
+        "isActive": "Active user"
+    },
+    "placeholders": {
+        "name": "Full name...",
+        "username": "Username...",
+        "email": "email@example.com",
+        "password": "Password...",
+        "newPassword": "New password...",
+        "passwordConfirmation": "Confirm password...",
+        "role": "Select role..."
+    },
+    "sections": {
+        "basicInfo": "Basic Information",
+        "password": "Password",
+        "storesAccess": "Store Access",
+        "status": "Status",
+        "activity": "Activity",
+        "sessions": "Active Sessions"
+    },
+    "filters": {
+        "allRoles": "All roles",
+        "allStatuses": "All statuses"
+    },
+    "actions": {
+        "forceLogout": "Force Logout",
+        "view": "View info"
+    },
+    "activity": {
+        "lastLogin": "Last Login",
+        "lastLoginIp": "Last Login IP",
+        "lastLogout": "Last Logout",
+        "passwordChanged": "Password Changed",
+        "loginCount": "Total Logins",
+        "accountCreated": "Account Created",
+        "activeSessions": "Active Sessions",
+        "sessions": "sessions"
+    },
+    "sessions": {
+        "ipAddress": "IP Address",
+        "device": "Device",
+        "lastActivity": "Last Activity",
+        "status": "Status",
+        "current": "Current",
+        "active": "Active"
+    },
+    "messages": {
+        "created": "User created successfully",
+        "updated": "User updated successfully",
+        "deleted": "User deleted successfully",
+        "confirmDelete": "Are you sure you want to delete the user \"{{name}}\"?",
+        "forceLogoutTitle": "Force User Logout",
+        "confirmForceLogout": "Are you sure you want to force logout the user \"{{name}}\"? The user will be disconnected immediately.",
+        "forceLogoutSuccess": "Session closed successfully",
+        "cannotDeleteSelf": "You cannot delete your own account",
+        "cannotDeleteSuperAdmin": "Super Admin account cannot be deleted",
+        "cannotLogoutSelf": "You cannot close your own session from here"
+    }
+}

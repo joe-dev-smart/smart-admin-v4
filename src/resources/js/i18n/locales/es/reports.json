@@ -1,0 +1,100 @@
+{
+    "title": "Reportes",
+    "subtitle": "Reportes de inventario, movimientos y ventas",
+    "stock": {
+        "title": "Reporte de Stock",
+        "description": "Niveles de inventario actuales por producto y tienda",
+        "product": "Producto",
+        "category": "Categoría",
+        "store": "Tienda",
+        "quantity": "Cantidad",
+        "minimumStock": "Stock Mín.",
+        "showLowStockOnly": "Solo stock bajo"
+    },
+    "movements": {
+        "title": "Reporte de Movimientos",
+        "description": "Historial de movimientos de inventario con filtros por tienda, tipo y fecha",
+        "date": "Fecha",
+        "product": "Producto",
+        "store": "Tienda",
+        "type": "Tipo",
+        "quantity": "Cantidad",
+        "user": "Usuario",
+        "description": "Descripción",
+        "types": {
+            "entry": "Entrada",
+            "entry_transfer": "Entrada por Traslado",
+            "sale_return": "Devolución de Venta",
+            "remove": "Baja",
+            "out_transfer": "Salida por Traslado",
+            "sale": "Venta"
+        }
+    },
+    "sales": {
+        "title": "Reporte de Ventas",
+        "description": "Historial de ventas con totales y filtros por fecha, tienda y estado",
+        "totalSales": "Total Ventas"
+    },
+    "purchases": {
+        "title": "Reporte de Compras",
+        "description": "Historial de compras por proveedor, tienda y rango de fechas con totales",
+        "totalOrders": "Total Órdenes",
+        "itemsCount": "Productos"
+    },
+    "bestSellers": {
+        "title": "Productos Más Vendidos",
+        "description": "Productos ordenados por unidades vendidas e ingresos — útil para decisiones de reabastecimiento",
+        "unitsSold": "Unidades Vendidas",
+        "salesCount": "# Ventas",
+        "revenue": "Ingresos",
+        "avgPrice": "Precio Prom.",
+        "totalUnitsSold": "Total Unidades Vendidas",
+        "totalRevenue": "Ingresos Totales",
+        "sortByRevenue": "Ordenar por ingresos",
+        "sortByUnits": "Ordenar por unidades",
+        "sortBySales": "Ordenar por # ventas"
+    },
+    "debts": {
+        "title": "Deudas de Clientes",
+        "description": "Saldos pendientes de ventas con pago parcial — controla el flujo de caja y da seguimiento a clientes",
+        "outstanding": "Pendiente",
+        "clientsWithDebt": "Clientes con Deuda",
+        "totalPending": "Total Pendiente",
+        "pendingSales": "Ventas Pendientes",
+        "byClientTitle": "Resumen por Cliente"
+    },
+    "inventoryValue": {
+        "title": "Valorización de Inventario",
+        "description": "Stock actual × precio de venta — estima el valor total de tu activo en inventario",
+        "unitPrice": "Precio Unitario",
+        "estimatedValue": "Valor Est.",
+        "totalUnits": "Total Unidades en Stock",
+        "totalValue": "Valor Total Estimado",
+        "basedOnPrice1": "Basado en Precio General (Precio 1)"
+    },
+    "dailySummary": {
+        "title": "Resumen Diario de Ventas",
+        "description": "Ingresos agrupados por día — identifica tendencias, picos y días lentos de un vistazo",
+        "date": "Fecha",
+        "salesCount": "Ventas",
+        "revenue": "Ingresos",
+        "collected": "Cobrado",
+        "outstanding": "Pendiente",
+        "chart": "Barra",
+        "bestDay": "Mejor día",
+        "totalSales": "Total Ventas",
+        "totalRevenue": "Ingresos Totales",
+        "totalCollected": "Total Cobrado",
+        "totalOutstanding": "Total Pendiente",
+        "dailyBreakdown": "Detalle por Día"
+    },
+    "filters": {
+        "allStores": "Todas las tiendas",
+        "allTypes": "Todos los tipos",
+        "allProviders": "Todos los proveedores",
+        "allCategories": "Todas las categorías",
+        "allClients": "Todos los clientes",
+        "dateFrom": "Desde fecha",
+        "dateTo": "Hasta fecha"
+    }
+}

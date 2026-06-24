@@ -155,6 +155,33 @@ const MenuItem = ({ item }) => {
 
 const AppMenu = () => {
     const [openMenuKey, setOpenMenuKey] = useState(null);
+    const { auth } = usePage().props;
+    const { t } = useTranslation();
+
+    // Check if user is super admin
+    const isSuperAdmin = auth?.user?.is_super_admin;
+    const userPermissions = auth?.user?.permissions || [];
+
+    // Helper to check if user has a specific permission
+    const hasPermission = (permission) => {
+        if (isSuperAdmin || userPermissions.includes('*')) {
+            return true;
+        }
+        return userPermissions.includes(permission);
+    };
+
+    // Filter menu items based on superAdminOnly flag and permissions
+    const filteredMenuItems = menuItems.filter(item => {
+        // Check superAdminOnly restriction
+        if (item.superAdminOnly && !isSuperAdmin) {
+            return false;
+        }
+        // Check permission restriction
+        if (item.permission && !hasPermission(item.permission)) {
+            return false;
+        }
+        return true;
+    });
 
     const scrollToActiveLink = () => {
         const activeItem = document.querySelector('.side-nav-link.active');
@@ -175,10 +202,10 @@ const AppMenu = () => {
 
     return (
         <ul className="side-nav">
-            {menuItems.map((item) =>
+            {filteredMenuItems.map((item) =>
                 item.isTitle ? (
                     <li className="side-nav-title" key={item.key}>
-                        {item.label}
+                        {t(`common:${item.label}`)}
                     </li>
                 ) : item.children ? (
                     <MenuItemWithChildren

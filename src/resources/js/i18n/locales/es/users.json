@@ -1,0 +1,81 @@
+{
+    "title": "Usuarios",
+    "subtitle": "Gestiona los usuarios del sistema",
+    "newUser": "Nuevo Usuario",
+    "editUser": "Editar Usuario",
+    "viewUser": "Información del Usuario",
+    "storesAssigned": "ubicaciones",
+    "selectAllStores": "Seleccionar todas",
+    "noStores": "No hay ubicaciones configuradas en el sistema.",
+    "editingOwnAccount": "Estas editando tu propia cuenta.",
+    "cannotChangeOwnRole": "No puedes cambiar tu propio rol.",
+    "cannotDeactivateOwnAccount": "No puedes desactivar tu propia cuenta.",
+    "passwordChangeHint": "Deja los campos de contraseña vacíos si no deseas cambiarla.",
+    "fields": {
+        "name": "Nombre",
+        "username": "Usuario",
+        "email": "Correo Electrónico",
+        "password": "Contraseña",
+        "newPassword": "Nueva Contraseña",
+        "passwordConfirmation": "Confirmar Contraseña",
+        "role": "Rol",
+        "stores": "Ubicaciones",
+        "status": "Estado",
+        "isActive": "Usuario activo"
+    },
+    "placeholders": {
+        "name": "Nombre completo...",
+        "username": "Nombre de usuario...",
+        "email": "correo@ejemplo.com",
+        "password": "Contraseña...",
+        "newPassword": "Nueva contraseña...",
+        "passwordConfirmation": "Confirmar contraseña...",
+        "role": "Seleccionar rol..."
+    },
+    "sections": {
+        "basicInfo": "Información Básica",
+        "password": "Contraseña",
+        "storesAccess": "Acceso a Ubicaciones",
+        "status": "Estado",
+        "activity": "Actividad",
+        "sessions": "Sesiones Activas"
+    },
+    "filters": {
+        "allRoles": "Todos los roles",
+        "allStatuses": "Todos los estados"
+    },
+    "actions": {
+        "forceLogout": "Cerrar Sesión",
+        "view": "Ver información"
+    },
+    "activity": {
+        "lastLogin": "Último Inicio de Sesión",
+        "lastLoginIp": "Última IP de Acceso",
+        "lastLogout": "Último Cierre de Sesión",
+        "passwordChanged": "Contraseña Modificada",
+        "loginCount": "Total de Inicios de Sesión",
+        "accountCreated": "Cuenta Creada",
+        "activeSessions": "Sesiones Activas",
+        "sessions": "sesiones"
+    },
+    "sessions": {
+        "ipAddress": "Dirección IP",
+        "device": "Dispositivo",
+        "lastActivity": "Última Actividad",
+        "status": "Estado",
+        "current": "Actual",
+        "active": "Activa"
+    },
+    "messages": {
+        "created": "Usuario creado exitosamente",
+        "updated": "Usuario actualizado exitosamente",
+        "deleted": "Usuario eliminado exitosamente",
+        "confirmDelete": "¿Está seguro de eliminar al usuario \"{{name}}\"?",
+        "forceLogoutTitle": "Cerrar Sesión de Usuario",
+        "confirmForceLogout": "¿Está seguro de cerrar la sesión del usuario \"{{name}}\"? El usuario será desconectado inmediatamente.",
+        "forceLogoutSuccess": "Sesión cerrada exitosamente",
+        "cannotDeleteSelf": "No puede eliminar su propia cuenta",
+        "cannotDeleteSuperAdmin": "La cuenta Super Admin no puede ser eliminada",
+        "cannotLogoutSelf": "No puede cerrar su propia sesión desde aquí"
+    }
+}

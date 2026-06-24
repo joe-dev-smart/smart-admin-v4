@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
@@ -50,18 +51,17 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
-    /**
-     * Scope to filter only enabled products.
-     */
-    public function scopeEnabled($query)
+    public function stocks(): HasMany
+    {
+        return $this->hasMany(Stock::class);
+    }
+
+    public function scopeEnabled(\Illuminate\Database\Eloquent\Builder $query): \Illuminate\Database\Eloquent\Builder
     {
         return $query->where('status', 'enabled');
     }
 
-    /**
-     * Scope to search products by name, code, or barcode.
-     */
-    public function scopeSearch($query, $search)
+    public function scopeSearch(\Illuminate\Database\Eloquent\Builder $query, string $search): \Illuminate\Database\Eloquent\Builder
     {
         return $query->where(function ($q) use ($search) {
             $q->where('name', 'like', "%{$search}%")

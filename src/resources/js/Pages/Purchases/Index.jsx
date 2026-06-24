@@ -78,6 +78,7 @@ export default function PurchasesIndex({ purchases, providers, stores, filters }
             width: '120px',
             render: (row) => (
                 <ActionButtons
+                    viewRoute={route('purchases.show', row.id)}
                     editRoute={route('purchases.edit', row.id)}
                     onDelete={() => setDeleteModal({ show: true, purchase: row })}
                 />

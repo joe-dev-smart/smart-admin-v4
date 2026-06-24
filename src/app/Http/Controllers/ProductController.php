@@ -124,6 +124,7 @@ class ProductController extends Controller
     {
         return Inertia::render('Products/Show', [
             'product' => $product->load(['category', 'brand']),
+            'stocks' => $product->stocks()->with('store')->get(),
         ]);
     }
 

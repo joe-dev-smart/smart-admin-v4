@@ -97,3 +97,7 @@
 @import "plugins/treeview";
 @import "plugins/typehead";
 @import "plugins/wizard";
+// Prevent page-width shift when scrollbar appears/disappears
+html {
+    overflow-y: scroll;
+}

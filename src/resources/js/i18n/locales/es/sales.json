@@ -1,0 +1,81 @@
+{
+    "title": "Ventas",
+    "subtitle": "Gestión de ventas",
+    "single": "Venta",
+    "newSale": "Nueva Venta",
+    "editSale": "Editar Venta",
+    "fields": {
+        "code": "Código",
+        "saleDate": "Fecha de Venta",
+        "client": "Cliente",
+        "store": "Tienda",
+        "payment": "Método de Pago",
+        "paid": "Pagado",
+        "remaining": "Saldo Pendiente",
+        "subtotal": "Subtotal",
+        "discount": "Descuento",
+        "total": "Total",
+        "observation": "Observación",
+        "status": "Estado",
+        "hasDebt": "Tiene Deuda",
+        "createdBy": "Creado por"
+    },
+    "placeholders": {
+        "store": "Seleccionar tienda...",
+        "client": "Seleccionar cliente...",
+        "observation": "Observaciones adicionales..."
+    },
+    "statuses": {
+        "valid": "Válida",
+        "annulled": "Anulada",
+        "draft": "Borrador"
+    },
+    "payments": {
+        "cash": "Efectivo",
+        "bank_deposit": "Depósito Bancario",
+        "card": "Tarjeta",
+        "qr_payment": "Pago QR",
+        "check": "Cheque",
+        "payment_plan": "Plan de Pagos"
+    },
+    "priceTypes": {
+        "price1": "Precio General",
+        "price2": "Sector Público",
+        "price3": "Sector Privado",
+        "price4": "Precio Mayor"
+    },
+    "sections": {
+        "generalInfo": "Información General",
+        "items": "Productos",
+        "summary": "Resumen",
+        "payment": "Pago"
+    },
+    "items": {
+        "product": "Producto",
+        "quantity": "Cant.",
+        "price": "Precio",
+        "subtotal": "Subtotal",
+        "detail": "Detalle",
+        "noItems": "Sin productos. Busque y agregue productos.",
+        "searchProduct": "Buscar producto por código o nombre..."
+    },
+    "actions": {
+        "annul": "Anular"
+    },
+    "annul": {
+        "confirmTitle": "Anular Venta",
+        "confirmMessage": "¿Está seguro de anular la venta {{code}}? Se devolverá el stock al inventario."
+    },
+    "filters": {
+        "allStores": "Todas las tiendas",
+        "allPayments": "Todos los pagos"
+    },
+    "messages": {
+        "created": "Venta creada exitosamente",
+        "updated": "Venta actualizada exitosamente",
+        "deleted": "Venta eliminada exitosamente",
+        "annulled": "Venta anulada y stock devuelto",
+        "confirmDelete": "¿Está seguro de eliminar la venta {{code}}?",
+        "debtWarning": "El cliente tiene un saldo pendiente de {{amount}}"
+    }
+}

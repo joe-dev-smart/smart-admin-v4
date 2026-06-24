@@ -1,0 +1,50 @@
+{
+    "title": "Roles",
+    "subtitle": "Manage system roles and permissions",
+    "newRole": "New Role",
+    "editRole": "Edit Role",
+    "systemRole": "System",
+    "systemRoleWarning": "This is a system role. The name cannot be modified.",
+    "superAdminAllPermissions": "The Super Admin role has access to all system permissions.",
+    "noPermissions": "No permissions configured in the system.",
+    "redirectRouteHelp": "Page where the user will be redirected after login.",
+    "fields": {
+        "name": "Name",
+        "description": "Description",
+        "usersCount": "Users",
+        "redirectRoute": "Home Page"
+    },
+    "placeholders": {
+        "name": "Role name...",
+        "description": "Role description..."
+    },
+    "sections": {
+        "basicInfo": "Basic Information",
+        "permissions": "Permissions"
+    },
+    "modules": {
+        "stores": "Stores",
+        "clients": "Clients",
+        "providers": "Providers",
+        "categories": "Categories",
+        "brands": "Brands",
+        "products": "Products",
+        "purchases": "Purchases",
+        "transfers": "Transfers",
+        "users": "Users",
+        "roles": "Roles",
+        "reports": "Reports"
+    },
+    "actions": {
+        "view": "View",
+        "create": "Create",
+        "edit": "Edit",
+        "delete": "Delete"
+    },
+    "messages": {
+        "created": "Role created successfully",
+        "updated": "Role updated successfully",
+        "deleted": "Role deleted successfully",
+        "confirmDelete": "Are you sure you want to delete the role \"{{name}}\"?"
+    }
+}

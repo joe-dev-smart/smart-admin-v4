@@ -66,6 +66,7 @@ export default function ClientsIndex({ clients, filters }) {
             width: '120px',
             render: (row) => (
                 <ActionButtons
+                    viewRoute={route('clients.show', row.id)}
                     editRoute={route('clients.edit', row.id)}
                     onDelete={() => setDeleteModal({ show: true, client: row })}
                 />
